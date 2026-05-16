@@ -228,8 +228,85 @@
         <p class="dev-credits">© 2026 श्री प्रगट हनुमान जी देवस्थानम् | Designed with Devotion</p>
     </footer>
 
-    <!-- Razorpay SDK Links (Baad me connect karenge) -->
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-    <script src="script.js"></script>
+
+    <script>
+        // 1. Payment Success/Order Handling Function
+        async function initiateDonation(formData) {
+            try {
+                // Backend par order create karne ki request
+                const res = await fetch('https://pragat-hanuman-mandir.onrender.com/create-order', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ amount: formData.amount })
+                });
+                
+                const data = await res.json();
+                
+                if (data.success) {
+                    var options = {
+                        "key": data.key_id,
+                        "amount": data.amount,
+                        "currency": "INR",
+                        "name": "श्री प्रगट हनुमान जी देवस्थानम",
+                        "description": "मंदिर सेवा/निर्माण दान",
+                        "order_id": data.order_id,
+                        "handler": async function (response){
+                            // Payment success hote hi backend par mail trigger hoga
+                            await fetch('https://pragat-hanuman-mandir.onrender.com/api/payment/success', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({
+                                    razorpay_payment_id: response.razorpay_payment_id,
+                                    razorpay_order_id: response.razorpay_order_id,
+                                    amount: formData.amount,
+                                    name: formData.name,
+                                    email: formData.email,
+                                    phone: formData.phone,
+                                    gotra: formData.gotra
+                                })
+                            });
+                            alert("दान सफलतापूर्वक प्राप्त हुआ! रसीद आपके ईमेल पर भेज दी गई है। 🙏");
+                            document.getElementById('donationForm').reset();
+                        },
+                        "prefill": {
+                            "name": formData.name,
+                            "email": formData.email,
+                            "contact": formData.phone
+                        },
+                        "theme": { "color": "#ff6600" }
+                    };
+                    var rzp1 = new Razorpay(options);
+                    rzp1.open();
+                } else {
+                    alert("सर्वर से संपर्क नहीं हो पाया, कृपया दोबारा प्रयास करें।");
+                }
+            } catch (err) {
+                console.error(err);
+                alert("नेटवर्क त्रुटि! कृपया जांचें कि आपका इंटरनेट चल रहा है या नहीं।");
+            }
+        }
+
+        // 2. Form Submit Event Handler
+        document.addEventListener("DOMContentLoaded", function() {
+            const form = document.getElementById('donationForm');
+            if (form) {
+                form.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    
+                    const formData = {
+                        name: document.getElementById('donorName').value,
+                        email: document.getElementById('donorEmail').value,
+                        phone: document.getElementById('donorPhone').value,
+                        gotra: document.getElementById('donorGotra').value || 'N/A',
+                        amount: document.getElementById('donationAmount').value
+                    };
+
+                    // Ab ye function 100% milega kyunki dono ek hi file mein hain
+                    await initiateDonation(formData);
+                });
+            }
+        });
+    </script>
 </body>
 </html>
