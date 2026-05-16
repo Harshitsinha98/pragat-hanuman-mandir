@@ -142,24 +142,49 @@
     </section>
 
     <!-- Donation Section (Razorpay Enabled Layout) -->
-    <section id="donation" class="donation-section">
+    <<section id="donation" class="donation-section">
         <div class="section-title">
             <span>Contribution</span>
             <h2>मन्दिर सेवा एवं दान</h2>
             <div class="tilak-divider"></div>
         </div>
-        <div class="donation-box">
-            <div class="donation-info">
-                <h3>भव्य निर्माण और भंडारे में सहयोग करें</h3>
-                <p>मन्दिर के विकास कार्यों, गऊ सेवा, एवं निरंतर चलने वाले भंडारे में अपनी श्रद्धा अनुसार ऑनलाइन सहयोग राशि भेजें।</p>
+        
+        <div class="donation-box" style="max-width: 500px; margin: auto; padding: 25px; border-radius: 12px; background: #ffffff; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+            <div class="donation-info" style="text-align: center; margin-bottom: 20px;">
+                <h3 style="color: #ff6600;">भव्य निर्माण और भंडारे में सहयोग करें</h3>
+                <p style="color: #666; font-size: 14px;">मन्दिर के विकास कार्यों, गऊ सेवा, एवं निरंतर चलने वाले भंडारे में अपनी श्रद्धा अनुसार ऑनलाइन सहयोग राशि भेजें। रसीद आपके ईमेल पर स्वतः भेज दी जाएगी।</p>
             </div>
-            <div class="donation-action">
-                <label for="amount">सहयोग राशि (₹ Amount)</label>
-                <input type="number" id="amount" placeholder="Enter Amount (e.g. 501)" min="1">
-                <button onclick="initiatePayment()" class="pay-btn">
-                    <img src="https://img.icons8.com/ios-filled/20/ffffff/rupee.png"/> सुरक्षित दान करें
+            
+            <form id="donationForm" style="display: flex; flex-direction: column; gap: 12px; text-align: left;">
+                <div class="form-group">
+                    <label style="font-weight: 500; font-size: 14px; color: #333;">भक्त का नाम *</label>
+                    <input type="text" id="donorName" placeholder="अपना नाम दर्ज करें" required style="width: 100%; padding: 10px; margin-top: 4px; border: 1px solid #ccc; border-radius: 6px; font-family: 'Poppins', sans-serif;">
+                </div>
+                
+                <div class="form-group">
+                    <label style="font-weight: 500; font-size: 14px; color: #333;">ईमेल आईडी * (रसीद के लिए)</label>
+                    <input type="email" id="donorEmail" placeholder="username@gmail.com" required style="width: 100%; padding: 10px; margin-top: 4px; border: 1px solid #ccc; border-radius: 6px; font-family: 'Poppins', sans-serif;">
+                </div>
+                
+                <div class="form-group">
+                    <label style="font-weight: 500; font-size: 14px; color: #333;">मोबाइल नंबर *</label>
+                    <input type="tel" id="donorPhone" placeholder="10 अंकों का नंबर" required style="width: 100%; padding: 10px; margin-top: 4px; border: 1px solid #ccc; border-radius: 6px; font-family: 'Poppins', sans-serif;">
+                </div>
+                
+                <div class="form-group">
+                    <label style="font-weight: 500; font-size: 14px; color: #333;">गोत्र (यदि देना चाहें)</label>
+                    <input type="text" id="donorGotra" placeholder="अपना गोत्र लिखें (Optional)" style="width: 100%; padding: 10px; margin-top: 4px; border: 1px solid #ccc; border-radius: 6px; font-family: 'Poppins', sans-serif;">
+                </div>
+                
+                <div class="form-group">
+                    <label style="font-weight: 500; font-size: 14px; color: #333;">सहयोग राशि (₹ Amount) *</label>
+                    <input type="number" id="donationAmount" placeholder="जैसे: 501, 1100, 2100" min="1" required style="width: 100%; padding: 10px; margin-top: 4px; border: 1px solid #ff6600; border-radius: 6px; font-weight: 6px; font-family: 'Poppins', sans-serif;">
+                </div>
+                
+                <button type="submit" class="pay-btn" style="background-color: #ff6600; color: white; border: none; padding: 14px; font-size: 16px; font-weight: bold; cursor: pointer; border-radius: 6px; display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 10px; transition: 0.3s;">
+                    <img src="https://img.icons8.com/ios-filled/20/ffffff/rupee.png"/> सुरक्षित दान करें 🙏
                 </button>
-            </div>
+            </form>
         </div>
     </section>
 

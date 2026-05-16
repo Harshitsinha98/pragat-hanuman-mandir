@@ -127,3 +127,19 @@ function toggleAudio() {
         audioWidget.classList.add('muted-by-user'); // User ne khud mute kiya, isliye auto-start nahi hoga
     }
 }
+// Form submit hone par chalega
+document.getElementById('donationForm').addEventListener('submit', async function(e) {
+    e.preventDefault(); // Page reload hone se rokne ke liye
+
+    // Saara data collect karna
+    const formData = {
+        name: document.getElementById('donorName').value,
+        email: document.getElementById('donorEmail').value,
+        phone: document.getElementById('donorPhone').value,
+        gotra: document.getElementById('donorGotra').value || 'N/A',
+        amount: document.getElementById('donationAmount').value
+    };
+
+    // Aapka payment wala function trigger hoga
+    await initiateDonation(formData);
+});
