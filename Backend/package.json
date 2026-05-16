@@ -18,6 +18,3 @@
     "razorpay": "^2.9.6"
   }
 }
-"scripts": {
-  "start": "node server.js"
-}
