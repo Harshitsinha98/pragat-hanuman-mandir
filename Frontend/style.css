@@ -1,0 +1,1132 @@
+/* Premium Reset & Typography */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-maroon: #7A0016;
+    --gold-accent: #E5A93C;
+    --saffron: #FF6F00;
+    --dark-bg: #1A0D11;
+    --light-bg: #FFFBF7;
+    --text-dark: #2C2523;
+}
+/* Universal Image Responsive Fix */
+img {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover; /* Isse image stretch ya distor nahi hogi, automatic crop hokar fit hogi */
+    display: block;
+}
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--light-bg);
+    color: var(--text-dark);
+    scroll-behavior: smooth;
+}
+
+/* ==========================================================================
+   2. HEADER & NAVIGATION (RESPONSIVE NAVBAR) - UPDATED WITH LOGO LINK & COLORS
+   ========================================================================== */
+header {
+    background-color: rgba(26, 13, 17, 0.95);
+    border-bottom: 2px solid var(--gold-accent);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 6%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+}
+
+/* NAYA: Logo Link Reset taaki blue line na aaye aur click chaley */
+.logo-link {
+    text-decoration: none;
+    color: inherit;
+    display: inline-block;
+}
+
+.logo-link:hover {
+    opacity: 0.9;
+    transition: opacity 0.2s ease;
+}
+
+/* NAYA: Alignment and Spacer Fix */
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 12px; 
+}
+
+/* NAYA: Logo Image Dimensions */
+.mandir-logo {
+    height: 55px; 
+    width: auto;
+    display: block;
+}
+
+.logo-text-group {
+    display: flex;
+    flex-direction: column;
+}
+
+/* FIXED: Isse text dark background par ekdum white chamkega */
+.logo-text {
+    font-family: 'Marcellus', serif;
+    font-size: 24px;
+    color: #FFFFFF !important; 
+    letter-spacing: 1px;
+    font-weight: bold;
+    line-height: 1.2;
+}
+
+/* FIXED: Sub-text premium gold color me dikhega */
+.logo-sub {
+    font-size: 12px;
+    color: var(--gold-accent) !important; 
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-top: 3px;
+}
+
+header nav ul {
+    display: flex;
+    list-style: none;
+    align-items: center;
+}
+
+header nav ul li {
+    margin-left: 25px;
+}
+
+header nav ul li a {
+    color: #FFF;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+header nav ul li a:hover,
+header nav ul li a.active {
+    color: var(--gold-accent);
+}
+
+header nav ul li a.active {
+    border-bottom: 2px solid var(--gold-accent);
+    padding-bottom: 4px;
+}
+
+/* Hero Section */
+/* ==========================================================================
+   3. HERO BANNER WITH CONSTANT BACKGROUND FIX
+   ========================================================================== */
+.hero-section {
+    position: relative;
+    height: 85vh;
+    /* Yahan aapki main best photo 'hero-bg.jpg' constant background rahegi */
+    background: linear-gradient(to bottom, rgba(26,13,17,0.75), rgba(26,13,17,0.92)), url('images/hero-bg.jpg') no-repeat center center/cover !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 20px;
+}
+
+/* Dark Overlay to make text perfectly readable */
+.hero-overlay {
+    position: absolute;
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
+    background: rgba(26, 13, 17, 0.4); /* Extra dark tint balance if needed */
+    z-index: 1;
+}
+
+/* Content layer stays perfectly on top */
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+}
+
+.spiritual-tag {
+    color: var(--gold-accent);
+    font-size: 16px;
+    letter-spacing: 2px;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.hero-content h1 {
+    font-family: 'Marcellus', serif;
+    font-size: 46px;
+    color: #FFF;
+    line-height: 1.3;
+    margin-bottom: 20px;
+}
+
+.hero-content h1 .highlight {
+    color: var(--saffron);
+    text-shadow: 0 0 10px rgba(255,111,0,0.5);
+}
+
+.hero-content p {
+    font-size: 18px;
+    color: #E0D6D3;
+    margin-bottom: 35px;
+}
+
+.hero-btns {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.btn-primary, .btn-secondary {
+    padding: 14px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: var(--gold-accent);
+    color: var(--dark-bg);
+}
+
+.btn-secondary {
+    border: 2px solid #FFF;
+    color: #FFF;
+}
+
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(229,169,60,0.4); }
+.btn-secondary:hover { background-color: #FFF; color: var(--dark-bg); }
+
+/* Section Common Titles */
+.section-title {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-title span {
+    color: var(--saffron);
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 3px;
+    display: block;
+}
+
+.section-title h2 {
+    font-family: 'Marcellus', serif;
+    font-size: 32px;
+    color: var(--primary-maroon);
+    margin-top: 5px;
+}
+
+.tilak-divider {
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(to right, transparent, var(--saffron), var(--gold-accent), var(--saffron), transparent);
+    margin: 12px auto 0;
+    border-radius: 2px;
+}
+
+/* About Section */
+.about-section {
+    padding: 80px 10%;
+    text-align: center;
+}
+
+.about-content {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 16px;
+    line-height: 1.8;
+    color: #554844;
+}
+
+/* Darbar Section */
+.darbar-section {
+    background: linear-gradient(rgba(122, 0, 22, 0.9), rgba(26, 13, 17, 0.95)), url('images/darbar-bg.jpg');
+    background-size: cover;
+    padding: 80px 6%;
+    color: #FFF;
+    text-align: center;
+}
+
+.darbar-card {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.darbar-card h2 {
+    font-family: 'Marcellus', serif;
+    font-size: 32px;
+    color: var(--gold-accent);
+    margin-bottom: 15px;
+}
+
+.timing-badge {
+    background-color: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(229, 169, 60, 0.3);
+    padding: 25px;
+    border-radius: 15px;
+    margin-top: 30px;
+    display: inline-block;
+}
+
+.timing-badge h3 {
+    color: var(--gold-accent);
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.timing-badge .day {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.timing-badge .time {
+    color: #FFB37C;
+}
+
+/* Donation Section */
+.donation-section {
+    padding: 80px 6%;
+    background-color: #FFF6EE;
+}
+
+.donation-box {
+    background-color: #FFF;
+    max-width: 850px;
+    margin: 0 auto;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(122,0,22,0.05);
+    border: 1px solid #F0E2D5;
+    display: flex;
+    overflow: hidden;
+}
+
+.donation-info {
+    padding: 40px;
+    flex: 1;
+    background-color: #FFFDFB;
+}
+
+.donation-info h3 {
+    color: var(--primary-maroon);
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+.donation-action {
+    padding: 40px;
+    flex: 1;
+    background-color: var(--dark-bg);
+    color: #FFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.donation-action label {
+    font-size: 14px;
+    color: var(--gold-accent);
+    margin-bottom: 8px;
+}
+
+.donation-action input {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.1);
+    color: #FFF;
+    font-size: 16px;
+    margin-bottom: 20px;
+    outline: none;
+}
+
+.pay-btn {
+    background: linear-gradient(135deg, var(--saffron), #FF5722);
+    color: #FFF;
+    border: none;
+    padding: 14px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background 0.3s;
+}
+
+.pay-btn:hover {
+    background: var(--gold-accent);
+    color: var(--dark-bg);
+}
+
+/* Footer */
+footer {
+    background-color: #11080A;
+    color: #A39699;
+    text-align: center;
+    padding: 40px 20px;
+    font-size: 14px;
+    border-top: 1px solid rgba(229,169,60,0.1);
+}
+
+footer p { margin-bottom: 8px; }
+.dev-credits { margin-top: 20px; font-size: 12px; color: #5C5254; }
+
+/* Responsive Settings */
+@media (max-width: 768px) {
+    header { padding: 15px 20px; flex-direction: column; gap: 15px; }
+    header nav ul { flex-wrap: wrap; justify-content: center; gap: 10px; }
+    header nav ul li { margin: 5px 10px; }
+    .hero-content h1 { font-size: 32px; }
+    .hero-btns { flex-direction: column; gap: 10px; }
+    .donation-box { flex-direction: column; }
+}
+/* Inner Pages Banner Style */
+.page-banner {
+    background: linear-gradient(rgba(26, 13, 17, 0.8), rgba(26, 13, 17, 0.95)), url('images/hero-bg.jpg') no-repeat center center/cover;
+    text-align: center;
+    padding: 60px 20px;
+    color: #FFF;
+    border-bottom: 3px solid var(--gold-accent);
+}
+
+.page-banner h1 {
+    font-family: 'Marcellus', serif;
+    font-size: 36px;
+    color: var(--gold-accent);
+}
+
+/* Gallery Page Specific Grid */
+.gallery-page-section {
+    padding: 60px 6%;
+}
+
+.gallery-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.photo-card {
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    border: 1px solid #F0E2D5;
+    transition: transform 0.3s ease;
+}
+
+.photo-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+}
+
+.photo-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--saffron);
+}
+
+/* Active Link Highlight */
+header nav ul li a.active {
+    color: var(--gold-accent);
+    border-bottom: 2px solid var(--gold-accent);
+    padding-bottom: 4px;
+}
+/* ==========================================================================
+   10. UPDATED ABOUT PAGE - DOUBLE CARD LAYOUT
+   ========================================================================== */
+.about-page-container {
+    padding: 60px 6%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.8fr;
+    gap: 50px;
+    align-items: start;
+}
+
+.about-left {
+    display: flex;
+    flex-direction: column;
+    gap: 30px; /* Dono cards ke beech ka gap */
+    position: sticky;
+    top: 100px;
+}
+
+.profile-card {
+    background-color: #FFF;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(122,0,22,0.06);
+    border: 1px solid #F0E2D5;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.profile-card:hover {
+    transform: translateY(-5px);
+}
+
+.image-box {
+    width: 100%;
+    height: 300px; /* Card height choti rakhi hai taaki do cards screen par aa sakein */
+    overflow: hidden;
+}
+
+.about-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-bottom: 3px solid var(--gold-accent);
+}
+
+.card-info {
+    padding: 15px;
+    text-align: center;
+}
+
+.card-info h3 {
+    font-family: 'Marcellus', serif;
+    color: var(--primary-maroon);
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.card-info .tagline, .card-info .quote {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+/* Mobile Fix */
+@media (max-width: 900px) {
+    .about-grid { grid-template-columns: 1fr; }
+    .about-left { position: relative; top: 0; }
+}
+/* ==========================================================================
+   11. DEDICATED CONTACT PAGE STYLING
+   ========================================================================== */
+.contact-page-section {
+    padding: 60px 6%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr; /* Left details, right map */
+    gap: 40px;
+    align-items: stretch;
+}
+
+/* Info Cards Styling */
+.contact-info-block {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.info-card {
+    background-color: #FFF;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(122,0,22,0.04);
+    border: 1px solid #F0E2D5;
+}
+
+.info-card h3 {
+    font-family: 'Marcellus', serif;
+    color: var(--primary-maroon);
+    font-size: 20px;
+    margin-bottom: 12px;
+    border-left: 3px solid var(--saffron);
+    padding-left: 10px;
+}
+
+.info-card p {
+    font-size: 15px;
+    color: var(--text-dark);
+    line-height: 1.7;
+}
+
+.info-card strong {
+    color: var(--primary-maroon);
+}
+
+/* Map Box Wrapper */
+.contact-map-block {
+    background-color: #FFF;
+    padding: 10px;
+    border-radius: 15px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.05);
+    border: 1px solid #F0E2D5;
+    display: flex;
+}
+
+/* Contact Mobile Responsive Breakpoint */
+@media (max-width: 850px) {
+    .contact-grid {
+        grid-template-columns: 1fr; /* Stack columns on small screens */
+        gap: 30px;
+    }
+    
+    .contact-map-block iframe {
+        height: 350px !important;
+    }
+}
+
+/* ==========================================================================
+   HISTORY TYPOGRAPHY & SPACING FIX (HEADINGS REDESIGN)
+   ========================================================================== */
+.history-text-block h2 {
+    font-family: 'Marcellus', serif;
+    color: var(--primary-maroon);
+    font-size: 32px;
+    line-height: 1.3;
+    margin-bottom: 10px;
+}
+
+/* FIXED: Isse saari sub-headings premium Maroon/Saffron shade mein proper gap ke saath dikhengi */
+.history-text-block h3 {
+    font-family: 'Marcellus', serif;
+    color: var(--primary-maroon) !important; /* Ya aap var(--saffron) bhi rakh sakte hain */
+    font-size: 22px;
+    margin-top: 35px;       /* Heading ke upar professional gap */
+    margin-bottom: 12px;    /* Heading ke neeche text se gap */
+    font-weight: 600;
+    border-left: 3px solid var(--saffron); /* Ek sunder saffron touch left side mein */
+    padding-left: 10px;
+}
+
+.history-text-block p {
+    font-size: 16px;
+    color: var(--text-dark);
+    line-height: 1.8;
+    margin-bottom: 18px;    /* Har paragraph ke beech ka clean gap */
+    text-align: justify;
+}
+
+.history-text-block strong {
+    color: var(--primary-maroon);
+    font-weight: 600;
+}
+/* ==========================================================================
+   12. HOME PAGE - UPGRADED ABOUT SECTION (OUR ROOTS)
+   ========================================================================== */
+.about-section-home {
+    padding: 80px 8%;
+    background-color: var(--light-bg);
+}
+
+.about-home-container {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr; /* Split Grid Layout */
+    gap: 60px;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Left Column Styling: Spiritual Frame */
+.about-home-visual {
+    display: flex;
+    justify-content: center;
+}
+
+.spiritual-frame {
+    position: relative;
+    border-radius: 20px;
+    padding: 15px;
+    background: #FFF;
+    border: 1px solid #F0E2D5;
+    box-shadow: 0 15px 40px rgba(122, 0, 22, 0.08); /* Soft Maroon Glow */
+}
+
+.frame-img {
+    width: 100%;
+    max-width: 420px;
+    height: 480px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 2px solid var(--gold-accent);
+}
+
+.frame-badge {
+    position: absolute;
+    bottom: 35px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, var(--saffron), #E65100);
+    color: #FFF;
+    padding: 8px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 25px;
+    box-shadow: 0 4px 15px rgba(255, 111, 0, 0.4);
+    white-space: nowrap;
+}
+
+/* Right Column Styling: Typography */
+.section-title-left {
+    margin-bottom: 25px;
+}
+
+.section-title-left span {
+    color: var(--saffron);
+    font-size: 13px;
+    letter-spacing: 3px;
+    font-weight: 600;
+    display: block;
+}
+
+.section-title-left h2 {
+    font-family: 'Marcellus', serif;
+    font-size: 36px;
+    color: var(--primary-maroon);
+    margin-top: 5px;
+}
+
+.tilak-divider-left {
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(to right, var(--saffron), var(--gold-accent), transparent);
+    margin-top: 10px;
+    border-radius: 2px;
+}
+
+.lead-text {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--primary-maroon);
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.about-home-text p {
+    font-size: 15.5px;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 25px;
+}
+
+/* Premium Features List styling */
+.spiritual-features {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 30px;
+}
+
+.spiritual-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 20px;
+    font-size: 15px;
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+.feat-icon {
+    font-size: 20px;
+    background-color: #FFF2E6;
+    padding: 8px;
+    border-radius: 50%;
+    line-height: 1;
+}
+
+/* Clean Underlined Read More Button */
+.read-more-btn {
+    color: var(--saffron);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    transition: color 0.3s ease, transform 0.3s ease;
+    display: inline-block;
+}
+
+.read-more-btn:hover {
+    color: var(--primary-maroon);
+    transform: translateX(5px);
+}
+
+/* Mobile Responsive Adjustments */
+@media (max-width: 900px) {
+    .about-home-container {
+        grid-template-columns: 1fr; /* Single column layout on small screens */
+        gap: 40px;
+    }
+    .frame-img {
+        height: 350px;
+    }
+    .section-title-left h2 {
+        font-size: 30px;
+    }
+}
+/* ==========================================================================
+   13. UPGRADED BIOGRAPHY & DARBAR TIMINGS SECTION
+   ========================================================================== */
+.darbar-section-upgraded {
+    background: linear-gradient(135deg, #4A000D, #26050A); /* Royal Deep Maroon */
+    padding: 90px 8%;
+    color: #FFF;
+    border-top: 3px solid var(--gold-accent);
+    border-bottom: 3px solid var(--gold-accent);
+}
+
+.darbar-container {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr; /* Left bio text, right card */
+    gap: 60px;
+    align-items: start;
+    max-width: 1250px;
+    margin: 0 auto;
+}
+
+/* Left Column Styling: Biography */
+.section-title-left-white span {
+    color: var(--gold-accent);
+    font-size: 13px;
+    letter-spacing: 3px;
+    font-weight: 600;
+    display: block;
+}
+
+.section-title-left-white h2 {
+    font-family: 'Marcellus', serif;
+    font-size: 36px;
+    color: #FFFFFF;
+    margin-top: 5px;
+}
+
+.tilak-divider-left-gold {
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(to right, var(--gold-accent), var(--saffron), transparent);
+    margin-top: 12px;
+    border-radius: 2px;
+}
+
+.bio-lead {
+    font-size: 18px;
+    font-style: italic;
+    color: #FFD29D; /* Soft warm orange-gold */
+    border-left: 3px solid var(--saffron);
+    padding-left: 15px;
+    margin: 25px 0;
+    line-height: 1.6;
+}
+
+.bio-content-body h3 {
+    font-family: 'Marcellus', serif;
+    font-size: 22px;
+    color: var(--gold-accent);
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+
+.bio-content-body p {
+    font-size: 15.5px;
+    color: #F0E6E8;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+/* Right Column Styling: Premium Timings Card */
+.darbar-timing-card-fixed {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(229, 169, 60, 0.25);
+    border-radius: 20px;
+    padding: 10px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    position: sticky;
+    top: 110px;
+}
+
+.card-inner-border {
+    border: 1px dashed rgba(229, 169, 60, 0.4);
+    border-radius: 15px;
+    padding: 30px;
+}
+
+.live-indicator {
+    background-color: rgba(255, 111, 0, 0.2);
+    color: #FF9100;
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+.darbar-timing-card-fixed h3 {
+    font-family: 'Marcellus', serif;
+    font-size: 24px;
+    color: var(--gold-accent);
+    margin-bottom: 12px;
+    line-height: 1.3;
+}
+
+.darbar-sub {
+    font-size: 14.5px;
+    color: #E2D4D6;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+/* Timing Inside Box Highlight */
+.timing-box-premium {
+    background-color: rgba(26, 13, 17, 0.6);
+    border: 1px solid rgba(229, 169, 60, 0.2);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.timing-box-premium h4 {
+    font-size: 14px;
+    color: var(--gold-accent);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 10px;
+}
+
+.day-highlight {
+    font-size: 22px;
+    font-weight: 600;
+    color: #FFFFFF;
+    margin-bottom: 5px;
+}
+
+.time-highlight {
+    font-size: 15px;
+    color: #FFB37C;
+}
+
+.darbar-note p {
+    font-size: 13px;
+    color: #CBBABF;
+    line-height: 1.5;
+}
+
+/* Mobile Responsive */
+@media (max-width: 950px) {
+    .darbar-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    .darbar-timing-card-fixed {
+        position: relative;
+        top: 0;
+    }
+}
+/* ==========================================================================
+   14. UPDATED PREMIUM SOCIAL GALLERY & GRID
+   ========================================================================== */
+.social-feed-section {
+    padding: 60px 8%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.social-connect-banner {
+    background: linear-gradient(135deg, #FFFaf0, #FFF2E6);
+    border: 1px solid #F0E2D5;
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(122,0,22,0.04);
+    margin-bottom: 50px;
+}
+
+.social-connect-banner h2 {
+    font-family: 'Marcellus', serif;
+    color: var(--primary-maroon);
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+.social-connect-banner p {
+    font-size: 16px;
+    color: var(--text-dark);
+    max-width: 800px;
+    margin: 0 auto 30px auto;
+    line-height: 1.7;
+}
+
+.social-btn-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.social-hub-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: #FFF;
+    padding: 14px 28px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.social-hub-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.fb-hub {
+    background: linear-gradient(135deg, #1877F2, #145DBF);
+}
+
+.insta-hub {
+    background: linear-gradient(135deg, #E1306C, #C13584, #F56040);
+}
+
+.hub-icon {
+    font-size: 20px;
+}
+
+/* Gallery Photo Grid */
+.gallery-photo-title {
+    text-align: center;
+}
+
+.gallery-photo-title h3 {
+    font-family: 'Marcellus', serif;
+    color: var(--primary-maroon);
+    font-size: 26px;
+}
+
+.insta-mock-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.mock-card {
+    border-radius: 12px;
+    overflow: hidden;
+    height: 280px;
+    border: 1px solid #F0E2D5;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.04);
+    transition: transform 0.3s;
+}
+
+.mock-card:hover {
+    transform: scale(1.03);
+}
+
+.mock-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ==========================================================================
+   14. LIVE SOCIAL EMBED WRAPPER STYLING
+   ========================================================================== */
+.social-feed-section {
+    padding: 60px 6%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.gallery-photo-title {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.gallery-photo-title h2 {
+    font-family: 'Marcellus', serif;
+    color: var(--primary-maroon);
+    font-size: 32px;
+}
+
+.gallery-photo-title p {
+    font-size: 16px;
+    color: var(--text-muted);
+    margin-top: 5px;
+}
+
+.live-embed-wrapper {
+    max-width: 950px;
+    margin: 0 auto;
+    background: #FFF;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(122,0,22,0.06);
+    border: 1px solid #F0E2D5;
+    min-height: 600px; /* Loading ke waqt page layout jhatka na maare */
+}
+/* ==========================================================================
+   15. FLOATING HANUMAN CHALISA AUDIO CONTROLLER (CENTERED FIX)
+   ========================================================================== */
+#audio-control-widget {
+    position: fixed;
+    bottom: 25px;            /* Niche se professional gap */
+    left: 50%;               /* Screen ke exact center me lane ke liye */
+    transform: translateX(-50%); /* Horizontal alignment ko perfect center karne ke liye */
+    background: linear-gradient(135deg, var(--saffron, #ff6f00), #E65100);
+    color: #FFF;
+    padding: 12px 24px;      /* Center me thoda aur clean aur bada button size */
+    border-radius: 30px;
+    display: inline-flex;    /* Elements ko properly align rkhne ke liye */
+    align-items: center;
+    gap: 12px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14.5px;
+    font-weight: 600;
+    cursor: pointer;
+    z-index: 2000;           /* Taaki sabhi sections aur layers ke upar rahe */
+    box-shadow: 0 8px 25px rgba(230, 81, 0, 0.4);
+    border: 1px solid rgba(255,255,255,0.25);
+    white-space: nowrap;     /* Text ko single line me rkhne ke liye */
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+#audio-control-widget:hover {
+    /* Center position maintain rkhte hue hover animation */
+    transform: translateX(-50%) translateY(-3px) scale(1.02);
+    box-shadow: 0 12px 30px rgba(230, 81, 0, 0.6);
+}
+
+/* Jab audio chal raha ho toh halka sa breathing aura effect */
+.audio-playing {
+    animation: pulseGlowCenter 2s infinite;
+}
+
+@keyframes pulseGlowCenter {
+    0% { box-shadow: 0 8px 25px 0 rgba(230, 81, 0, 0.6); }
+    70% { box-shadow: 0 8px 25px 12px rgba(230, 81, 0, 0); }
+    100% { box-shadow: 0 8px 25px 0 rgba(230, 81, 0, 0); }
+}

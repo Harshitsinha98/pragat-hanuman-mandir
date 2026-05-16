@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>गुरुजी डैशबोर्ड - सेवा रिकॉर्ड</title>
+    <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .admin-page { max-width: 1000px; margin: 50px auto; padding: 30px; background: #fff; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #F0E2D5; }
+        .login-box { text-align: center; max-width: 400px; margin: 80px auto; padding: 40px; background: #fff; border-radius: 12px; box-shadow: 0 10px 30px rgba(122,0,22,0.08); border: 1px solid #F0E2D5; }
+        .admin-input { width: 100%; padding: 12px; margin: 15px 0; border: 1px solid #ccc; border-radius: 8px; font-size: 16px; text-align: center; }
+        .admin-btn { background: var(--primary-maroon, #7a0016); color: white; border: none; padding: 12px 30px; border-radius: 25px; font-size: 16px; cursor: pointer; font-weight: 600; width: 100%; }
+        .record-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        .record-table th, .record-table td { padding: 12px; border: 1px solid #eee; text-align: left; }
+        .record-table th { background-color: var(--primary-maroon, #7a0016); color: white; font-family: 'Marcellus', serif; }
+        .status-success { color: #2e7d32; font-weight: bold; }
+    </style>
+</head>
+<body style="background-color: var(--light-bg, #fff3dd);">
+
+    <div id="login-area" class="login-box">
+        <h2 style="font-family: 'Marcellus', serif; color: #7a0016;">दरबार एडमिन लॉगिन</h2>
+        <p style="font-size: 14px; color: #666; margin-top: 5px;">कृपया गुरुजी का सुरक्षित पासवर्ड दर्ज करें</p>
+        <input type="password" id="admin-password" class="admin-input" placeholder="पासवर्ड यहाँ लिखें...">
+        <button onclick="checkAdminPassword()" class="admin-btn">डैशबोर्ड खोलें</button>
+        <p id="error-msg" style="color: red; margin-top: 10px; font-size: 14px; display: none;"></p>
+    </div>
+
+    <div id="dashboard-area" class="admin-page" style="display: none;">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #7a0016; padding-bottom: 15px;">
+            <h2 style="font-family: 'Marcellus', serif; color: #7a0016; margin: 0;">ऑनलाइन सहयोग निधि रिकॉर्ड</h2>
+            <button onclick="location.reload()" style="background:#666; color:white; border:none; padding:8px 15px; border-radius:5px; cursor:pointer;">लॉगआउट</button>
+        </div>
+        
+        <table class="record-table">
+            <thead>
+                <tr>
+                    <th>टोकन / Payment ID</th>
+                    <th>सहयोग राशि (₹)</th>
+                    <th>दिनांक एवं समय</th>
+                    <th>स्थिति (Status)</th>
+                </tr>
+            </thead>
+            <tbody id="records-list">
+                </tbody>
+        </table>
+    </div>
+
+    <script>
+        let savedPassword = "";
+
+        async function checkAdminPassword() {
+            const password = document.getElementById('admin-password').value;
+            const errorMsg = document.getElementById('error-msg');
+            
+            // Backend port 5002 par chal raha hai local testing me
+            try {
+                const response = await fetch('http://localhost:5002/api/admin/records', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ password: password })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    savedPassword = password;
+                    document.getElementById('login-area').style.display = 'none';
+                    document.getElementById('dashboard-area').style.display = 'block';
+                    
+                    // Render Table Records
+                    const tbody = document.getElementById('records-list');
+                    tbody.innerHTML = "";
+                    
+                    if(data.records.length === 0) {
+                        tbody.innerHTML = `<tr><td colspan="4" style="text-align:center; color:#888;">अभी तक कोई ऑनलाइन सहयोग प्राप्त नहीं हुआ है।</td></tr>`;
+                    } else {
+                        data.records.forEach(rec => {
+                            tbody.innerHTML += `
+                                <tr>
+                                    <td><code>${rec.id}</code></td>
+                                    <td><strong>₹${rec.amount}</strong></td>
+                                    <td>${rec.date}</td>
+                                    <td class="status-success">${rec.status}</td>
+                                </tr>
+                            `;
+                        });
+                    }
+                } else {
+                    errorMsg.innerText = data.message;
+                    errorMsg.style.display = 'block';
+                }
+            } catch (err) {
+                errorMsg.innerText = "सर्वर से संपर्क नहीं हो सका। कृपया सुनिश्चित करें कि Backend चालू है।";
+                errorMsg.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
