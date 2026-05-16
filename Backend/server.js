@@ -20,12 +20,9 @@ const razorpay = new Razorpay({
 // 🚨 TRICK: Isko ekदम standard aur clean rakhte hain
 const transporter = nodemailer.createTransport({
     service: 'gmail',
-    host: 'smtp.gmail.com',
-    port: 465,
-    secure: true,
     auth: {
-        user: 'sinhaharshit67@gmail.com', // 🌟 Maine aapki ID daal di hai (Agar mandir ki ho toh change kar lena)
-        pass: 'plxrbywzzfgsqwja' // 🔑 Aapka naya google app password bina space ke
+        user: 'sinhaharshit67@gmail.com',
+        pass: 'plxrbywzzfgsqwja' // Bina kisi space ke 16 letters
     }
 });
 
