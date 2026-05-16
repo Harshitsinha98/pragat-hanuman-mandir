@@ -51,8 +51,9 @@ app.post('/create-order', async (req, res) => {
 });
 
 // Server Listen
+// Yeh Render par chalne ke liye bilkul sahi code hai
 const PORT = process.env.PORT || 5002;
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
     console.log(`Server running on port ${PORT}`);
 });
 
