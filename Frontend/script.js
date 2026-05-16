@@ -41,7 +41,7 @@ async function initiatePayment() {
 
     try {
         // A. Backend (Port 5002) se Razorpay Order ID generate karwana
-        const response = await fetch(`${BACKEND_URL}/create-order`, {
+        const response = await fetch('https://pragat-hanuman-mandir.onrender.com/create-order', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
