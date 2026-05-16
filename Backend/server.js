@@ -24,7 +24,7 @@ const transporter = nodemailer.createTransport({
     port: 465,
     secure: true,
     auth: {
-        user: 'harshitsinha98@gmail.com', // 🌟 Maine aapki ID daal di hai (Agar mandir ki ho toh change kar lena)
+        user: 'sinhaharshit67@gmail.com', // 🌟 Maine aapki ID daal di hai (Agar mandir ki ho toh change kar lena)
         pass: 'plxrbywzzfgsqwja' // 🔑 Aapka naya google app password bina space ke
     }
 });
@@ -84,7 +84,7 @@ app.post('/api/payment/success', async (req, res) => {
 
         // ---- EMAIL KA KAAM BACKGROUND MEIN HOGA (NO AWAIT, NO FREEZE) ----
         const bhaktMailOptions = {
-            from: '"श्री प्रगट हनुमान जी देवस्थानम" <harshitsinha98@gmail.com>', // Sender Email match honi chahiye
+            from: '"श्री प्रगट हनुमान जी देवस्थानम" <sinhaharshit67@gmail.com>', // Sender Email match honi chahiye
             to: email,
             subject: 'पावन दान की रसीद - श्री प्रगट हनुमान जी देवस्थानम 🙏',
             html: `
@@ -106,8 +106,8 @@ app.post('/api/payment/success', async (req, res) => {
         };
 
         const gurujiMailOptions = {
-            from: '"Mandir Website" <harshitsinha98@gmail.com>',
-            to: 'harshitsinha98@gmail.com', // 🚨 Subah yahan Guruji ki Email daal dena, abhi check karne ke liye apni hi rani do
+            from: '"Mandir Website" <sinhaharshit67@gmail.com>',
+            to: 'sinhaharshit98@gmail.com', // 🚨 Subah yahan Guruji ki Email daal dena, abhi check karne ke liye apni hi rani do
             subject: '🚨 नई दान राशि प्राप्त हुई - मंदिर वेबसाइट',
             html: `
                 <div style="font-family: Arial; border: 1px solid #333; padding: 20px;">
