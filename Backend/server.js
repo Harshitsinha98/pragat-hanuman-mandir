@@ -17,14 +17,19 @@ const razorpay = new Razorpay({
 });
 
 // Nodemailer Email Transporter Setup
+// Nodemailer Email Transporter Setup
 const transporter = nodemailer.createTransport({
-    service: 'gmail',
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true, 
     auth: {
         user: 'sinhaharshit67@gmail.com',
-        pass: 'plxrbywzzfgsqwja' // Sahi app password bina spaces ke
+        pass: 'bsaqmnrrhhxrvexr' // 🌟 Naya password bina kisi space ke dalo yahan
+    },
+    tls: {
+        rejectUnauthorized: false 
     }
 });
-
 // Live In-Memory Array for Tracker
 let donationRecords = [];
 
