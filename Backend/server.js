@@ -16,20 +16,20 @@ const razorpay = new Razorpay({
     key_secret: process.env.RAZORPAY_KEY_SECRET
 });
 
-// Nodemailer Email Transporter Setup
-// Nodemailer Email Transporter Setup
+// Nodemailer Email Transporter Setup (Render-Friendly Secure Route)
 const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
     port: 465,
     secure: true, 
     auth: {
         user: 'sinhaharshit67@gmail.com',
-        pass: 'bsaqmnrrhhxrvexr' // 🌟 Naya password bina kisi space ke dalo yahan
+        pass: 'bsaqmnrrrhxrvexr' // 🌟 FIXED: Sahi password bina spaces ke set kar diya hai
     },
     tls: {
         rejectUnauthorized: false 
     }
 });
+
 // Live In-Memory Array for Tracker
 let donationRecords = [];
 
@@ -62,12 +62,12 @@ app.post('/create-order', async (req, res) => {
     }
 });
 
-// 2. Payment Success Route (FREEZE-PROOF)
+// 2. Payment Success Route (FREEZE-PROOF & REFRESH SAFE)
 app.post('/api/payment/success', async (req, res) => {
     try {
         const { razorpay_payment_id, razorpay_order_id, amount, name, email, phone, gotra } = req.body;
         
-        // Dynamic Date Creation
+        // Dynamic Indian Date Standard
         const indianDate = new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" });
 
         const newRecord = {
@@ -82,16 +82,16 @@ app.post('/api/payment/success', async (req, res) => {
             status: "Successful"
         };
         
-        // Save to temporary live storage
-        donationRecords.unshift(newRecord); // unshift se naya record table me sabse upar dikhega
+        // Save to temporary live dashboard stream
+        donationRecords.unshift(newRecord); 
 
-        // 🚨 BACKUP LOGGING: DB na hone ki wajah se Render logs me data rahega hamesha
+        // BACKUP LOGGING: Server logs output
         console.log("🚩 NEW DONATION RECORDED:", JSON.stringify(newRecord));
 
-        // Frontend ko TURANT free karo taaki loader ghumta na rahe
+        // Frontend ko instant discharge karo taaki user experience seamless rahe
         res.json({ success: true, message: "Payment recorded successfully!" });
 
-        // ---- BACKGROUND EMAIL CORRIDOR (NO AWAIT) ----
+        // ---- BACKGROUND EMAIL ASYNC CORRIDOR ----
         const bhaktMailOptions = {
             from: '"श्री प्रगट हनुमान जी देवस्थानम" <sinhaharshit67@gmail.com>',
             to: email,
@@ -118,7 +118,7 @@ app.post('/api/payment/success', async (req, res) => {
 
         const gurujiMailOptions = {
             from: '"Mandir Website Alert" <sinhaharshit67@gmail.com>',
-            to: 'sinhaharshit98@gmail.com', // Live notification to your tracker inbox
+            to: 'sinhaharshit98@gmail.com', 
             subject: `🚨 नई दान राशि प्राप्त हुई - ₹${newRecord.amount}`,
             html: `
                 <div style="font-family: Arial; border: 1px solid #333; padding: 20px; background-color: #f9f9f9;">
@@ -134,7 +134,7 @@ app.post('/api/payment/success', async (req, res) => {
             `
         };
 
-        // Fire emails dynamically in background threads
+        // Non-blocking asynchronous background thread triggers
         if (email && email.trim() !== "" && email !== "N/A") {
             transporter.sendMail(bhaktMailOptions, (err, info) => {
                 if (err) console.error("❌ Bhakt Email Sending Failed:", err.message);
@@ -155,7 +155,7 @@ app.post('/api/payment/success', async (req, res) => {
     }
 });
 
-// 3. FIXED NAYA ROUTE: Admin dashboard (`admin.html`) ko live data pass karne ke liye
+// 3. Admin open tracking gateway data pipeline
 app.get('/api/donations', (req, res) => {
     try {
         res.status(200).json({
@@ -167,7 +167,7 @@ app.get('/api/donations', (req, res) => {
     }
 });
 
-// 4. Secure Password Admin Route
+// 4. Secure Password Admin Records Route
 app.post('/api/admin/records', (req, res) => {
     const { password } = req.body;
     if (password === 'PragatHanuman@2026') {
