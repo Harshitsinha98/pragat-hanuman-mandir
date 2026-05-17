@@ -322,6 +322,26 @@
                 });
             }
         });
+        document.addEventListener("DOMContentLoaded", function() {
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const navLinks = document.getElementById('navLinks');
+
+    if (hamburgerBtn && navLinks) {
+        hamburgerBtn.addEventListener('click', function() {
+            // Yeh 'active' class ko lagayega aur hatayega
+            navLinks.classList.toggle('active');
+        });
+        
+        // Agar koi link par click kare, toh menu auto-close ho jaye
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+    }
+
+    // ... Baaki aapka purana donationForm wala code iske neeche chalta rahega
+});
     </script>
 </body>
 </html>

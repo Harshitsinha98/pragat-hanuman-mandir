@@ -1126,3 +1126,68 @@ header nav ul li a.active {
         font-size: 12px; /* Mobile par thoda chota aur sunder dikhega */
     }
 }
+/* Desktop par Hamburger Chhupa rahega */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 10001;
+}
+
+.hamburger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #ffffff; /* Sunder white lines */
+    border-radius: 3px;
+    transition: 0.3s ease;
+}
+
+/* --- Mobile / Tablet View (Responsive CSS) --- */
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex; /* Mobile par icon dikhega */
+    }
+
+    nav ul {
+        display: none; /* By default saare links chhup jayenge */
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 60%; /* Screen ka 60% hissa cover karega */
+        height: 100vh;
+        background-color: #2b1810; /* Mandir ka premium dark theme background */
+        padding: 80px 20px 20px 20px;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+        z-index: 10000;
+        gap: 20px;
+    }
+
+    /* Jab JavaScript 'active' class add karegi tab menu dikhega */
+    nav ul.active {
+        display: flex;
+    }
+
+    nav ul li {
+        width: 100%;
+        text-align: left;
+    }
+
+    nav ul li a {
+        display: block;
+        font-size: 18px;
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(255,102,0,0.2);
+    }
+    
+    /* Mobile par donate button thoda set karne ke liye */
+    .nav-donate-btn {
+        text-align: center;
+        margin-top: 10px;
+    }
+}
