@@ -293,12 +293,35 @@
             }
         }
 
-        // 2. Form Submit Event Handler
+       // ==========================================================================
+        // ALL FRONTEND LOGICS (DOM CONTENT LOADED) - 100% FIXED VERSION
+        // ==========================================================================
         document.addEventListener("DOMContentLoaded", function() {
+            
+            // 1. Mobile Menu Responsive Logic (Hamburger Toggle)
+            const hamburgerBtn = document.getElementById('hamburgerBtn');
+            const navLinks = document.getElementById('navLinks');
+
+            if (hamburgerBtn && navLinks) {
+                hamburgerBtn.addEventListener('click', function() {
+                    hamburgerBtn.classList.toggle('active'); // Line animation switch toggler
+                    navLinks.classList.toggle('active');     // Drawer slide-in triggers
+                });
+                
+                // Clicking any links inside drawer triggers auto-collapse smoothly
+                navLinks.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        hamburgerBtn.classList.remove('active');
+                        navLinks.classList.remove('active');
+                    });
+                });
+            }
+
+            // 2. Donation Form Submission Event Handler
             const form = document.getElementById('donationForm');
             if (form) {
                 form.addEventListener('submit', async function(e) {
-                    e.preventDefault();
+                    e.preventDefault(); // Stop native page reload routing
                     
                     const formData = {
                         name: document.getElementById('donorName').value,
@@ -308,31 +331,11 @@
                         amount: document.getElementById('donationAmount').value
                     };
 
-                    // Ab ye function 100% milega kyunki dono ek hi file mein hain
+                    // Trigger the Razorpay core function setup
                     await initiateDonation(formData);
                 });
             }
         });
-        document.addEventListener("DOMContentLoaded", function() {
-    const hamburgerBtn = document.getElementById('hamburgerBtn');
-    const navLinks = document.getElementById('navLinks');
-
-    if (hamburgerBtn && navLinks) {
-        hamburgerBtn.addEventListener('click', function() {
-            // Yeh 'active' class ko lagayega aur hatayega
-            navLinks.classList.toggle('active');
-        });
-        
-        // Agar koi link par click kare, toh menu auto-close ho jaye
-        navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-            });
-        });
-    }
-
-    // ... Baaki aapka purana donationForm wala code iske neeche chalta rahega
-});
     </script>
 </body>
 </html>
