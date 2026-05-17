@@ -7,14 +7,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        .admin-page { max-width: 1000px; margin: 50px auto; padding: 30px; background: #fff; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #F0E2D5; }
+        .admin-page { max-width: 1200px; margin: 40px auto; padding: 30px; background: #fff; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #F0E2D5; }
         .login-box { text-align: center; max-width: 400px; margin: 80px auto; padding: 40px; background: #fff; border-radius: 12px; box-shadow: 0 10px 30px rgba(122,0,22,0.08); border: 1px solid #F0E2D5; }
-        .admin-input { width: 100%; padding: 12px; margin: 15px 0; border: 1px solid #ccc; border-radius: 8px; font-size: 16px; text-align: center; }
-        .admin-btn { background: var(--primary-maroon, #7a0016); color: white; border: none; padding: 12px 30px; border-radius: 25px; font-size: 16px; cursor: pointer; font-weight: 600; width: 100%; }
-        .record-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        .record-table th, .record-table td { padding: 12px; border: 1px solid #eee; text-align: left; }
-        .record-table th { background-color: var(--primary-maroon, #7a0016); color: white; font-family: 'Marcellus', serif; }
-        .status-success { color: #2e7d32; font-weight: bold; }
+        .admin-input { width: 100%; padding: 12px; margin: 15px 0; border: 1px solid #ccc; border-radius: 8px; font-size: 16px; text-align: center; outline: none; font-family: 'Poppins', sans-serif; }
+        .admin-input:focus { border-color: #7a0016; }
+        .admin-btn { background: var(--primary-maroon, #7a0016); color: white; border: none; padding: 12px 30px; border-radius: 25px; font-size: 16px; cursor: pointer; font-weight: 600; width: 100%; transition: 0.3s; }
+        .admin-btn:hover { background: #5a0010; transform: translateY(-1px); }
+        
+        .table-wrapper { overflow-x: auto; margin-top: 25px; border-radius: 8px; border: 1px solid #eee; }
+        .record-table { width: 100%; border-collapse: collapse; min-width: 850px; font-size: 14px; }
+        .record-table th, .record-table td { padding: 14px; border-bottom: 1px solid #eee; text-align: left; }
+        .record-table th { background-color: var(--primary-maroon, #7a0016); color: white; font-family: 'Marcellus', serif; font-weight: 500; text-transform: uppercase; font-size: 13px; letter-spacing: 0.5px; }
+        .record-table tr:nth-child(even) { background-color: #fffdfa; }
+        .record-table tr:hover { background-color: #fff5f0; }
+        
+        .status-success { color: #2e7d32; font-weight: bold; background: #e8f5e9; padding: 4px 10px; border-radius: 20px; font-size: 12px; display: inline-block; }
     </style>
 </head>
 <body style="background-color: var(--light-bg, #fff3dd);">
@@ -23,28 +30,36 @@
         <h2 style="font-family: 'Marcellus', serif; color: #7a0016;">दरबार एडमिन लॉगिन</h2>
         <p style="font-size: 14px; color: #666; margin-top: 5px;">कृपया गुरुजी का सुरक्षित पासवर्ड दर्ज करें</p>
         <input type="password" id="admin-password" class="admin-input" placeholder="पासवर्ड यहाँ लिखें...">
-        <button onclick="checkAdminPassword()" class="admin-btn">डैशबोर्ड खोलें</button>
-        <p id="error-msg" style="color: red; margin-top: 10px; font-size: 14px; display: none;"></p>
+        <button onclick="checkAdminPassword()" class="admin-btn">डैशबोर्ड खोलें 🙏</button>
+        <p id="error-msg" style="color: red; margin-top: 15px; font-size: 14px; display: none;"></p>
     </div>
 
     <div id="dashboard-area" class="admin-page" style="display: none;">
         <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #7a0016; padding-bottom: 15px;">
-            <h2 style="font-family: 'Marcellus', serif; color: #7a0016; margin: 0;">ऑनलाइन सहयोग निधि रिकॉर्ड</h2>
-            <button onclick="location.reload()" style="background:#666; color:white; border:none; padding:8px 15px; border-radius:5px; cursor:pointer;">लॉगआउट</button>
+            <div>
+                <h2 style="font-family: 'Marcellus', serif; color: #7a0016; margin: 0;">ऑनलाइन सहयोग निधि रिकॉर्ड 🚩</h2>
+                <p style="font-size: 13px; color: #666; margin-top: 2px;">श्री प्रगट हनुमान जी देवस्थानम्, सूखी सेवनिया</p>
+            </div>
+            <button onclick="location.reload()" style="background:#666; color:white; border:none; padding:10px 20px; border-radius:20px; cursor:pointer; font-weight: 600; font-size: 13px;">लॉगआउट 🚪</button>
         </div>
         
-        <table class="record-table">
-            <thead>
-                <tr>
-                    <th>टोकन / Payment ID</th>
-                    <th>सहयोग राशि (₹)</th>
-                    <th>दिनांक एवं समय</th>
-                    <th>स्थिति (Status)</th>
-                </tr>
-            </thead>
-            <tbody id="records-list">
-                </tbody>
-        </table>
+        <div class="table-wrapper">
+            <table class="record-table">
+                <thead>
+                    <tr>
+                        <th>दिनांक एवं समय</th>
+                        <th>भक्त का नाम</th>
+                        <th>मोबाइल नंबर</th>
+                        <th>गोत्र (Gotra)</th>
+                        <th>सहयोग राशि</th>
+                        <th>Payment ID / टोकन</th>
+                        <th>स्थिति (Status)</th>
+                    </tr>
+                </thead>
+                <tbody id="records-list">
+                    </tbody>
+            </table>
+        </div>
     </div>
 
     <script>
@@ -53,10 +68,11 @@
         async function checkAdminPassword() {
             const password = document.getElementById('admin-password').value;
             const errorMsg = document.getElementById('error-msg');
+            errorMsg.style.display = 'none';
             
-            // Backend port 5002 par chal raha hai local testing me
             try {
-                const response = await fetch('http://localhost:5002/api/admin/records', {
+                // 🌟 FIXED: Localhost ko hatakar live Render URL se connect kar diya hai
+                const response = await fetch('https://pragat-hanuman-mandir.onrender.com/api/admin/records', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ password: password })
@@ -64,38 +80,50 @@
                 
                 const data = await response.json();
                 
-                if (data.success) {
+                if (response.ok && data.success) {
                     savedPassword = password;
                     document.getElementById('login-area').style.display = 'none';
                     document.getElementById('dashboard-area').style.display = 'block';
                     
-                    // Render Table Records
+                    // Render Table Records Pipeline
                     const tbody = document.getElementById('records-list');
                     tbody.innerHTML = "";
                     
-                    if(data.records.length === 0) {
-                        tbody.innerHTML = `<tr><td colspan="4" style="text-align:center; color:#888;">अभी तक कोई ऑनलाइन सहयोग प्राप्त नहीं हुआ है।</td></tr>`;
+                    if(!data.records || data.records.length === 0) {
+                        tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; padding: 30px; color:#888;">अभी तक कोई ऑनलाइन सहयोग प्राप्त नहीं हुआ है।</td></tr>`;
                     } else {
+                        // 🌟 FIXED: Saare field render honge ab (Naam, Phone, Gotra, Time)
                         data.records.forEach(rec => {
                             tbody.innerHTML += `
                                 <tr>
+                                    <td style="color: #555;">${rec.date || 'N/A'}</td>
+                                    <td style="font-weight: 600; color: #111;">${rec.name || 'अज्ञात भक्त'}</td>
+                                    <td>${rec.phone || 'N/A'}</td>
+                                    <td style="font-style: italic; color: #666;">${rec.gotra || 'N/A'}</td>
+                                    <td style="color: #ff6600; font-weight: bold; font-size: 15px;">₹${rec.amount}</td>
                                     <td><code>${rec.id}</code></td>
-                                    <td><strong>₹${rec.amount}</strong></td>
-                                    <td>${rec.date}</td>
-                                    <td class="status-success">${rec.status}</td>
+                                    <td><span class="status-success">सफल (Success)</span></td>
                                 </tr>
                             `;
                         });
                     }
                 } else {
-                    errorMsg.innerText = data.message;
+                    errorMsg.innerText = data.message || "गलत पासवर्ड! कृपया पुनः प्रयास करें।";
                     errorMsg.style.display = 'block';
                 }
             } catch (err) {
-                errorMsg.innerText = "सर्वर से संपर्क नहीं हो सका। कृपया सुनिश्चित करें कि Backend चालू है।";
+                console.error(err);
+                errorMsg.innerText = "सर्वर से संपर्क नहीं हो सका। कृपया सुनिश्चित करें कि आपका इंटरनेट और Render Server दोनों एक्टिव हैं।";
                 errorMsg.style.display = 'block';
             }
         }
+
+        // Enter key dabane par bhi automatic login ho jaye, uski shortcut setting
+        document.getElementById('admin-password').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                checkAdminPassword();
+            }
+        });
     </script>
 </body>
 </html>
