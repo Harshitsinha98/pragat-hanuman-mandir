@@ -8,39 +8,64 @@
     <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Poppins:wght@300;400;500;600&display=empty" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 <style>
-        /* Mobile Specific Overwrite Rules to bypass style.css clash */
+        /* Desktop features control */
+        .mobile-audio-li { display: none !important; }
+
+        /* Mobile Specific Overwrite Rules with Absolute Priority */
         @media (max-width: 768px) {
             header {
                 display: flex !important;
-                flex-direction: row !important; /* Logo aur Hamburger ko side-by-side rakhega */
+                flex-direction: row !important;
                 justify-content: space-between !important;
                 align-items: center !important;
                 padding: 12px 20px !important;
-                gap: 0px !important;
             }
 
-            /* Hamburger Button Setup */
+            /* Desktop widgets hide on phone */
+            .desktop-audio-widget { display: none !important; }
+            .mobile-audio-li { display: block !important; margin-bottom: 10px; }
+
+            /* Inside Mobile Menu Audio Button Styling */
+            #audio-control-widget-mobile {
+                background: linear-gradient(135deg, #ff6600, #ff9933);
+                color: white !important;
+                padding: 12px 20px;
+                border-radius: 25px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+                font-size: 15px;
+                font-weight: bold;
+                cursor: pointer;
+                box-shadow: 0 4px 12px rgba(255, 102, 0, 0.3);
+            }
+
+            /* FORCE HAMBURGER VISIBILITY */
             .hamburger {
                 display: flex !important;
                 flex-direction: column !important;
+                justify-content: center !important;
                 gap: 5px !important;
-                background: none !important;
+                background: transparent !important;
                 border: none !important;
                 cursor: pointer !important;
-                padding: 5px !important;
-                z-index: 10002 !important;
+                padding: 8px !important;
+                z-index: 10005 !important;
+                width: 40px;
+                height: 40px;
             }
 
             .hamburger span {
                 display: block !important;
-                width: 25px !important;
+                width: 26px !important;
                 height: 3px !important;
-                background-color: #ffffff !important;
+                background-color: #ffffff !important; /* Pure white lines */
                 border-radius: 3px !important;
-                transition: 0.3s ease !important;
+                transition: transform 0.3s ease, opacity 0.3s ease !important;
             }
 
-            /* Hamburger Lines to X Cross Animation */
+            /* Cross (X) Animation Overwrites */
             .hamburger.active span:nth-child(1) {
                 transform: translateY(8px) rotate(45deg) !important;
             }
@@ -51,24 +76,23 @@
                 transform: translateY(-8px) rotate(-45deg) !important;
             }
 
-            /* Side Drawer Overlap Container Fix */
+            /* Responsive Drawer Containers layout */
             #navLinks {
                 display: flex !important;
                 flex-direction: column !important;
                 position: fixed !important;
                 top: 0 !important;
-                right: -100% !important; /* By default screen ke baahar rahega */
-                width: 65% !important; /* Perfect drawer ratio */
+                right: -100% !important; 
+                width: 70% !important; 
                 height: 100vh !important;
-                background-color: #2b1810 !important; /* Deep Premium Dark Saffron/Chocolaty Brown */
-                padding: 100px 24px 24px 24px !important;
-                box-shadow: -5px 0 25px rgba(0,0,0,0.5) !important;
+                background-color: #2b1810 !important; /* Premium Mandir Dark Theme */
+                padding: 110px 24px 24px 24px !important;
+                box-shadow: -8px 0 25px rgba(0,0,0,0.6) !important;
                 z-index: 10001 !important;
-                gap: 20px !important;
+                gap: 15px !important;
                 transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
             }
 
-            /* Slide in drawer cleanly when class active toggles */
             #navLinks.active {
                 right: 0 !important;
             }
@@ -76,7 +100,6 @@
             #navLinks li {
                 width: 100% !important;
                 margin-left: 0 !important;
-                text-align: left !important;
                 list-style: none !important;
             }
 
@@ -86,59 +109,65 @@
                 color: #FFFFFF !important;
                 padding: 12px 0 !important;
                 text-decoration: none !important;
-                border-bottom: 1px solid rgba(255, 102, 0, 0.15) !important;
+                border-bottom: 1px solid rgba(255, 102, 0, 0.12) !important;
             }
 
-            /* Donate Nav Button Styling for mobile */
             .nav-donate-btn {
                 background-color: #ff6600 !important;
                 color: white !important;
                 text-align: center !important;
                 border-radius: 25px !important;
-                padding: 10px !important;
+                padding: 12px !important;
                 margin-top: 10px !important;
                 border-bottom: none !important;
             }
         }
-    </style>    
+    </style> 
 </head>
 <body>
 
     <!-- Premium Navbar -->
     <header>
-    <audio id="bgAudio" loop>
-    <source src="images/hanuman-chalisa.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-</audio>
+        <audio id="bgAudio" loop>
+            <source src="images/hanuman-chalisa.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
 
-<div id="audio-control-widget" onclick="toggleAudio()">
-    <span id="audio-icon">🎵</span>
-    <span id="audio-text">हनुमान चालीसा</span>
-</div>
-      <a href="index.html" class="logo-link">
-    <div class="logo-container">
-        <img src="images/logo.png" alt="Mandir Logo" class="mandir-logo">
-        <div class="logo-text-group">
-            <span class="logo-text">प्रगट हनुमानजी</span>
-            <span class="logo-sub">देवस्थानम्, सूखी सेवनिया</span>
+        <div id="audio-control-widget" class="desktop-audio-widget" onclick="toggleAudio()">
+            <span id="audio-icon">🎵</span>
+            <span id="audio-text">हनुमान चालीसा</span>
         </div>
-    </div>
-</a>
-        <nav>
-    <button class="hamburger" id="hamburgerBtn">
-        <span></span>
-        <span></span>
-        <span></span>
-    </button>
 
-    <ul id="navLinks">
-        <li><a href="index.html">होम</a></li>
-        <li><a href="about.html">मन्दिर इतिहास</a></li>
-        <li><a href="gallery.html">गैलरी</a></li>
-        <li><a href="contact.html">संपर्क करें</a></li>
-        <li><a href="#donation" class="nav-donate-btn">सेवा / दान</a></li>
-    </ul>
-</nav>
+        <a href="index.html" class="logo-link">
+            <div class="logo-container">
+                <img src="images/logo.png" alt="Mandir Logo" class="mandir-logo">
+                <div class="logo-text-group">
+                    <span class="logo-text">प्रगट हनुमानजी</span>
+                    <span class="logo-sub">देवस्थानम्, सूखी सेवनिया</span>
+                </div>
+            </div>
+        </a>
+
+        <nav>
+            <button class="hamburger" id="hamburgerBtn" aria-label="Menu" style="display: none;">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul id="navLinks">
+                <li class="mobile-audio-li">
+                    <div id="audio-control-widget-mobile" onclick="toggleAudio()">
+                        <span>🎵</span> <span>हनुमान चालीसा</span>
+                    </div>
+                </li>
+                <li><a href="index.html">होम</a></li>
+                <li><a href="about.html">मन्दिर इतिहास</a></li>
+                <li><a href="gallery.html">गैलरी</a></li>
+                <li><a href="contact.html">संपर्क करें</a></li>
+                <li><a href="#donation" class="nav-donate-btn">सेवा / दान</a></li>
+            </ul>
+        </nav>
     </header>
 
     <!-- Hero / Darshan Banner -->
