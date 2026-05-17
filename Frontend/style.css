@@ -1091,42 +1091,38 @@ header nav ul li a.active {
 /* ==========================================================================
    15. FLOATING HANUMAN CHALISA AUDIO CONTROLLER (CENTERED FIX)
    ========================================================================== */
+/* --- Hanuman Chalisa Widget CSS --- */
 #audio-control-widget {
     position: fixed;
-    bottom: 25px;            /* Niche se professional gap */
-    left: 50%;               /* Screen ke exact center me lane ke liye */
-    transform: translateX(-50%); /* Horizontal alignment ko perfect center karne ke liye */
-    background: linear-gradient(135deg, var(--saffron, #ff6f00), #E65100);
-    color: #FFF;
-    padding: 12px 24px;      /* Center me thoda aur clean aur bada button size */
+    bottom: 20px; /* Mobile aur desktop dono par niche safe rahega */
+    right: 20px;
+    background: linear-gradient(135deg, #ff6600, #ff9933);
+    color: white;
+    padding: 10px 18px;
     border-radius: 30px;
-    display: inline-flex;    /* Elements ko properly align rkhne ke liye */
-    align-items: center;
-    gap: 12px;
-    font-family: 'Poppins', sans-serif;
-    font-size: 14.5px;
-    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(255, 102, 0, 0.4);
     cursor: pointer;
-    z-index: 2000;           /* Taaki sabhi sections aur layers ke upar rahe */
-    box-shadow: 0 8px 25px rgba(230, 81, 0, 0.4);
-    border: 1px solid rgba(255,255,255,0.25);
-    white-space: nowrap;     /* Text ko single line me rkhne ke liye */
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: 9999; /* Sabse upar dikhega, kisi text ko chupayega nahi */
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 #audio-control-widget:hover {
-    /* Center position maintain rkhte hue hover animation */
-    transform: translateX(-50%) translateY(-3px) scale(1.02);
-    box-shadow: 0 12px 30px rgba(230, 81, 0, 0.6);
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(255, 102, 0, 0.6);
 }
 
-/* Jab audio chal raha ho toh halka sa breathing aura effect */
-.audio-playing {
-    animation: pulseGlowCenter 2s infinite;
-}
-
-@keyframes pulseGlowCenter {
-    0% { box-shadow: 0 8px 25px 0 rgba(230, 81, 0, 0.6); }
-    70% { box-shadow: 0 8px 25px 12px rgba(230, 81, 0, 0); }
-    100% { box-shadow: 0 8px 25px 0 rgba(230, 81, 0, 0); }
+/* --- Media Query for Mobile Screens --- */
+@media (max-width: 768px) {
+    #audio-control-widget {
+        bottom: 15px;
+        right: 15px;
+        padding: 8px 14px;
+        font-size: 12px; /* Mobile par thoda chota aur sunder dikhega */
+    }
 }
