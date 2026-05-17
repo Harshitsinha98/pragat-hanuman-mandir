@@ -155,3 +155,225 @@
             </button>
 
             <ul id="navLinks">
+                <li class="mobile-audio-li">
+                    <div id="audio-control-widget-mobile" onclick="toggleAudio()">
+                        <span>🎵</span> <span>हनुमान चालीसा</span>
+                    </div>
+                </li>
+                <li><a href="index.html">होम</a></li>
+                <li><a href="about.html">मन्दिर इतिहास</a></li>
+                <li><a href="gallery.html">गैलरी</a></li>
+                <li><a href="contact.html" class="active">संपर्क करें</a></li>
+                <li><a href="#donation" class="nav-donate-btn">सेवा / दान</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="page-banner">
+        <h1>मन्दिर से संपर्क करें</h1>
+        <p>सूखी सेवनिया धाम आगमन, दर्शन समय और आधिकारिक संपर्क सूत्र</p>
+    </div>
+
+    <section class="contact-page-section">
+        <div class="contact-grid">
+            
+            <div class="contact-info-block">
+                <div class="info-card">
+                    <h3>मन्दिर का मुख्य पता</h3>
+                    <p>श्री प्रगट हनुमान जी देवस्थानम्,<br>सूखी सेवनिया (भोपाल-विदिशा मार्ग),<br>भोपाल, मध्य प्रदेश - 462010</p>
+                </div>
+
+                <div class="info-card">
+                    <h3>संपर्क सूत्र (Phone Numbers)</h3>
+                    <p><strong>आधिकारिक मोबाइल:</strong> +91 7000194918</p>
+                    <p><strong>मन्दिर कार्यालय:</strong> 0755-2590599</p>
+                </div>
+
+                <div class="info-card">
+                    <h3>दर्शन एवं दरबार समय</h3>
+                    <p><strong>प्रतिदिन दर्शन:</strong> सुबह 06:00 बजे से रात्रि 09:00 बजे तक</p>
+                    <p><strong>मन्नत बाबा का दरबार:</strong> प्रत्येक मंगलवार सुबह 11:00 बजे से दोपहर 02:00 बजे तक</p>
+                </div>
+            </div>
+
+            <div class="contact-map-block">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3663.8290372138133!2d77.5186!3d23.3211!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDE5JzE2LjAiTiA3N8KwMzEnMDcuMCJF!5e0!3m2!1shi!2sin!4v1650000000000!5mdm" 
+                    width="100%" 
+                    height="100%" 
+                    style="border:0; min-height: 400px; border-radius: 15px;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="donation" class="donation-section" style="padding: 60px 20px; background: #fffcf7; text-align: center;">
+        <div class="section-title">
+            <span>Contribution</span>
+            <h2>मन्दिर सेवा एवं दान</h2>
+            <div class="tilak-divider"></div>
+        </div>
+        
+        <div style="max-width: 850px; margin: 40px auto; display: flex; flex-wrap: wrap; background: #ffffff; border-radius: 16px; box-shadow: 0 10px 30px rgba(255, 102, 0, 0.1); overflow: hidden; border: 1px solid rgba(255, 102, 0, 0.15);">
+            
+            <div style="flex: 1; min-width: 280px; background: linear-gradient(135deg, #ff6600, #ff9933); padding: 40px; display: flex; flex-direction: column; justify-content: center; align-items: center; color: #ffffff; text-align: center;">
+                <h3 style="font-size: 28px; margin-bottom: 20px; font-family: 'Marcellus', serif; text-shadow: 1px 1px 2px rgba(0,0,0,0.2);">भव्य निर्माण और भंडारे में सहयोग करें</h3>
+                <div style="width: 50px; height: 3px; background: #ffffff; margin-bottom: 20px; border-radius: 2px;"></div>
+                <p style="font-size: 15px; line-height: 1.6; opacity: 0.95; font-weight: 300;">मन्दिर के विकास कार्यों, गऊ सेवा, एवं निरंतर चलने वाले भंडारे में अपनी श्रद्धा अनुसार ऑनलाइन सहयोग राशि भेजें।</p>
+                <p style="font-size: 14px; margin-top: 15px; font-style: italic; background: rgba(255,255,255,0.2); padding: 8px 15px; border-radius: 20px;">🙏 पावन रसीद आपके ईमेल पर स्वतः भेज दी जाएगी।</p>
+            </div>
+            
+            <div style="flex: 1.2; min-width: 320px; padding: 40px; text-align: left; background: #ffffff;">
+                <form id="donationForm" style="display: flex; flex-direction: column; gap: 16px;">
+                    <div style="display: flex; flex-direction: column;">
+                        <label style="font-weight: 500; font-size: 14px; color: #444; margin-bottom: 6px;">भक्त का नाम *</label>
+                        <input type="text" id="donorName" placeholder="अपना नाम दर्ज करें" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px; outline: none; transition: 0.3s; font-family: 'Poppins', sans-serif;">
+                    </div>
+                    
+                    <div style="display: flex; flex-direction: column;">
+                        <label style="font-weight: 500; font-size: 14px; color: #444; margin-bottom: 6px;">ईमेल आईडी * (रसीद के लिए)</label>
+                        <input type="email" id="donorEmail" placeholder="username@gmail.com" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px; outline: none; font-family: 'Poppins', sans-serif;">
+                    </div>
+                    
+                    <div style="display: flex; flex-direction: column;">
+                        <label style="font-weight: 500; font-size: 14px; color: #444; margin-bottom: 6px;">मोबाइल नंबर *</label>
+                        <input type="tel" id="donorPhone" placeholder="10 अंकों का मोबाइल नंबर" required pattern="[0-9]{10}" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px; outline: none; font-family: 'Poppins', sans-serif;">
+                    </div>
+                    
+                    <div style="display: flex; flex-direction: column;">
+                        <label style="font-weight: 500; font-size: 14px; color: #444; margin-bottom: 6px;">गोत्र (यदि देना चाहें)</label>
+                        <input type="text" id="donorGotra" placeholder="अपना गोत्र लिखें (Optional)" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px; outline: none; font-family: 'Poppins', sans-serif;">
+                    </div>
+                    
+                    <div style="display: flex; flex-direction: column;">
+                        <label style="font-weight: 600; font-size: 14px; color: #ff6600; margin-bottom: 6px;">सहयोग राशि (₹ Amount) *</label>
+                        <input type="number" id="donationAmount" placeholder="जैसे: 501, 1100, 2100" min="1" required style="width: 100%; padding: 12px; border: 2px solid #ff6600; border-radius: 8px; font-size: 16px; font-weight: bold; outline: none; color: #ff6600; font-family: 'Poppins', sans-serif;">
+                    </div>
+                    
+                    <button type="submit" style="background: #ff6600; color: #ffffff; border: none; padding: 14px; font-size: 16px; font-weight: bold; cursor: pointer; border-radius: 8px; display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 10px; box-shadow: 0 4px 12px rgba(255, 102, 0, 0.3); transition: 0.3s;">
+                        <img src="https://img.icons8.com/ios-filled/20/ffffff/rupee.png" alt="rupee"/> सुरक्षित दान करें 🙏
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 श्री प्रगट हनुमान जी देवस्थानम् | भोपाल, मध्य प्रदेश</p>
+        <p class="dev-credits">Designed with Devotion</p>
+    </footer>
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+        // Audio Toggle Script Link Logic
+        function toggleAudio() {
+            const audio = document.getElementById("bgAudio");
+            if (audio.paused) {
+                audio.play();
+                document.getElementById("audio-icon").innerText = "⏸️";
+            } else {
+                audio.pause();
+                document.getElementById("audio-icon").innerText = "🎵";
+            }
+        }
+
+        // Single Concentrated DOMContentLoaded Block 
+        document.addEventListener("DOMContentLoaded", function() {
+            
+            // 1. Mobile Hamburger System
+            const hamburgerBtn = document.getElementById('hamburgerBtn');
+            const navLinks = document.getElementById('navLinks');
+
+            if (hamburgerBtn && navLinks) {
+                hamburgerBtn.addEventListener('click', function() {
+                    hamburgerBtn.classList.toggle('active');
+                    navLinks.classList.toggle('active');
+                });
+                
+                navLinks.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        hamburgerBtn.classList.remove('active');
+                        navLinks.classList.remove('active');
+                    });
+                });
+            }
+
+            // 2. Form Submission Handler Logic
+            const form = document.getElementById('donationForm');
+            if (form) {
+                form.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    
+                    const formData = {
+                        name: document.getElementById('donorName').value,
+                        email: document.getElementById('donorEmail').value,
+                        phone: document.getElementById('donorPhone').value,
+                        gotra: document.getElementById('donorGotra').value || 'N/A',
+                        amount: document.getElementById('donationAmount').value
+                    };
+
+                    await initiateDonation(formData);
+                });
+            }
+        });
+
+        // 3. Razorpay Trigger Pipeline Code
+        async function initiateDonation(formData) {
+            try {
+                const res = await fetch('https://pragat-hanuman-mandir.onrender.com/create-order', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ amount: formData.amount })
+                });
+                
+                const data = await res.json();
+                
+                if (data.success) {
+                    var options = {
+                        "key": data.key_id,
+                        "amount": data.amount,
+                        "currency": "INR",
+                        "name": "श्री प्रगट हनुमान जी देवस्थानम",
+                        "description": "मंदिर सेवा/निर्माण दान",
+                        "order_id": data.order_id,
+                        "handler": async function (response){
+                            await fetch('https://pragat-hanuman-mandir.onrender.com/api/payment/success', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({
+                                    razorpay_payment_id: response.razorpay_payment_id,
+                                    razorpay_order_id: response.razorpay_order_id,
+                                    amount: formData.amount,
+                                    name: formData.name,
+                                    email: formData.email,
+                                    phone: formData.phone,
+                                    gotra: formData.gotra
+                                })
+                            });
+                            alert("दान सफलतापूर्वक प्राप्त हुआ! रसीद आपके ईमेल पर भेज दी गई है। 🙏");
+                            document.getElementById('donationForm').reset();
+                        },
+                        "prefill": {
+                            "name": formData.name,
+                            "email": formData.email,
+                            "contact": formData.phone
+                        },
+                        "theme": { "color": "#ff6600" }
+                    };
+                    var rzp1 = new Razorpay(options);
+                    rzp1.open();
+                } else {
+                    alert("सर्वर से संपर्क नहीं हो पाया, कृपया दोबारा प्रयास करें।");
+                }
+            } catch (err) {
+                console.error(err);
+                alert("नेटवर्क त्रुटि! कृपया जांचें कि आपका इंटरनेट चल रहा है या नहीं।");
+            }
+        }
+    </script>
+</body>
+</html>
