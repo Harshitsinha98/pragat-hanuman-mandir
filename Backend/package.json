@@ -10,12 +10,15 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "type": "commonjs",
   "dependencies": {
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
-    "nodemailer": "^8.0.7",
-    "razorpay": "^2.9.6"
+    "razorpay": "^2.9.6",
+    "resend": "^4.1.2"
   }
 }
