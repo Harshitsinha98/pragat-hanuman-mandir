@@ -6,19 +6,137 @@
     <title>संपर्क करें - श्री प्रगट हनुमान जी देवस्थानम्</title>
     <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* Desktop features control */
+        .mobile-audio-li { display: none !important; }
+
+        /* Mobile Specific Overwrite Rules with Absolute Priority */
+        @media (max-width: 768px) {
+            header {
+                display: flex !important;
+                flex-direction: row !important;
+                justify-content: space-between !important;
+                align-items: center !important;
+                padding: 12px 20px !important;
+            }
+
+            /* Desktop widgets hide on phone */
+            .desktop-audio-widget { display: none !important; }
+            .mobile-audio-li { display: block !important; margin-bottom: 10px; }
+
+            /* Inside Mobile Menu Audio Button Styling */
+            #audio-control-widget-mobile {
+                background: linear-gradient(135deg, #ff6600, #ff9933);
+                color: white !important;
+                padding: 12px 20px;
+                border-radius: 25px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+                font-size: 15px;
+                font-weight: bold;
+                cursor: pointer;
+                box-shadow: 0 4px 12px rgba(255, 102, 0, 0.3);
+            }
+
+            /* FORCE HAMBURGER VISIBILITY */
+            .hamburger {
+                display: flex !important;
+                flex-direction: column !important;
+                justify-content: center !important;
+                gap: 5px !important;
+                background: transparent !important;
+                border: none !important;
+                cursor: pointer !important;
+                padding: 8px !important;
+                z-index: 10005 !important;
+                width: 40px;
+                height: 40px;
+            }
+
+            .hamburger span {
+                display: block !important;
+                width: 26px !important;
+                height: 3px !important;
+                background-color: #ffffff !important;
+                border-radius: 3px !important;
+                transition: transform 0.3s ease, opacity 0.3s ease !important;
+            }
+
+            /* Cross (X) Animation Overwrites */
+            .hamburger.active span:nth-child(1) {
+                transform: translateY(8px) rotate(45deg) !important;
+            }
+            .hamburger.active span:nth-child(2) {
+                opacity: 0 !important;
+            }
+            .hamburger.active span:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg) !important;
+            }
+
+            /* Responsive Drawer Containers layout */
+            #navLinks {
+                display: flex !important;
+                flex-direction: column !important;
+                position: fixed !important;
+                top: 0 !important;
+                right: -100% !important; 
+                width: 70% !important; 
+                height: 100vh !important;
+                background-color: #2b1810 !important;
+                padding: 110px 24px 24px 24px !important;
+                box-shadow: -8px 0 25px rgba(0,0,0,0.6) !important;
+                z-index: 10001 !important;
+                gap: 15px !important;
+                transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+            }
+
+            #navLinks.active {
+                right: 0 !important;
+            }
+
+            #navLinks li {
+                width: 100% !important;
+                margin-left: 0 !important;
+                list-style: none !important;
+            }
+
+            #navLinks li a {
+                display: block !important;
+                font-size: 16px !important;
+                color: #FFFFFF !important;
+                padding: 12px 0 !important;
+                text-decoration: none !important;
+                border-bottom: 1px solid rgba(255, 102, 0, 0.12) !important;
+            }
+
+            .nav-donate-btn {
+                background-color: #ff6600 !important;
+                color: white !important;
+                text-align: center !important;
+                border-radius: 25px !important;
+                padding: 12px !important;
+                margin-top: 10px !important;
+                border-bottom: none !important;
+            }
+        }
+    </style>
 </head>
 <body>
 
     <header>
-    <audio id="bgAudio" loop>
-    <source src="images/hanuman-chalisa.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-</audio>
+        <audio id="bgAudio" loop>
+            <source src="images/hanuman-chalisa.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
 
-<div id="audio-control-widget" onclick="toggleAudio()">
-    <span id="audio-icon">🎵</span>
-    <span id="audio-text">हनुमान चालीसा</span>
-</div>
+        <div id="audio-control-widget" class="desktop-audio-widget" onclick="toggleAudio()">
+            <span id="audio-icon">🎵</span>
+            <span id="audio-text">हनुमान चालीसा</span>
+        </div>
+
         <a href="index.html" class="logo-link">
             <div class="logo-container">
                 <img src="images/logo.png" alt="Mandir Logo" class="mandir-logo">
@@ -28,92 +146,12 @@
                 </div>
             </div>
         </a>
+
         <nav>
-            <ul>
-                <li><a href="index.html">होम</a></li>
-                <li><a href="about.html">मन्दिर इतिहास</a></li>
-                <li><a href="gallery.html">गैलरी</a></li>
-                <li><a href="contact.html" class="active">संपर्क करें</a></li>
-                <li><a href="index.html#donation" class="nav-donate-btn">सेवा / दान</a></li>
-            </ul>
-        </nav>
-    </header>
+            <button class="hamburger" id="hamburgerBtn" aria-label="Menu" style="display: none;">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
 
-    <div class="page-banner">
-        <h1>मन्दिर से संपर्क करें</h1>
-        <p>सूखी सेवनिया धाम आगमन, दर्शन समय और आधिकारिक संपर्क सूत्र</p>
-    </div>
-
-    <section class="contact-page-section">
-        <div class="contact-grid">
-            
-            <div class="contact-info-block">
-                <div class="info-card">
-                    <h3>मन्दिर का मुख्य पता</h3>
-                    <p>श्री प्रगट हनुमान जी देवस्थानम्,<br>सूखी सेवनिया (भोपाल-विदिशा मार्ग),<br>भोपाल, मध्य प्रदेश - 462010</p>
-                </div>
-
-                <div class="info-card">
-                    <h3>संपर्क सूत्र (Phone Numbers)</h3>
-                    <p><strong>आधिकारिक मोबाइल:</strong> +91 7000194918</p>
-                    <p><strong>मन्दिर कार्यालय:</strong> 0755-2590599</p>
-                </div>
-
-                <div class="info-card">
-                    <h3>दर्शन एवं दरबार समय</h3>
-                    <p><strong>प्रतिदिन दर्शन:</strong> सुबह 06:00 बजे से रात्रि 09:00 बजे तक</p>
-                    <p><strong>मन्नत बाबा का दरबार:</strong> प्रत्येक मंगलवार सुबह 09:00 बजे से प्रभु इच्छा तक</p>
-                </div>
-            </div>
-
-            <div class="contact-map-block">
-    <iframe 
-        src="https://maps.google.com/maps?q=23.3134375,77.5118125&z=15&output=embed" 
-        width="100%" 
-        height="100%" 
-        style="border:0; min-height: 400px; border-radius: 15px;" 
-        allowfullscreen="" 
-        loading="lazy" 
-        referrerpolicy="no-referrer-when-downgrade">
-    </iframe>
-</div>
-
-        </div>
-    </section>
-
-    <section id="donation" class="donation-section">
-        <div class="section-title">
-            <span>Online Sahyog Nidhi</span>
-            <h2>ऑनलाइन सेवा एवं सहयोग निधि</h2>
-            <div class="tilak-divider"></div>
-        </div>
-
-        <div class="donation-box">
-            <div class="donation-info">
-                <h3>मन्दिर निर्माण में सहयोग करें</h3>
-                <p>आपके द्वारा भेजी गई सहयोग राशि मन्दir निर्माण, भंडारा सेवा, एवं गऊ सेवा हेतु उपयोग की जाती है। प्रभु कार्य में अपना योगदान देकर पुण्य के भागीदार बनें।</p>
-                <p style="margin-top: 15px; font-weight: 500; color: var(--saffron);">* सभी भुगतान पूर्णतः सुरक्षित हैं।</p>
-            </div>
-            
-            <div class="donation-action">
-                <label for="amount">सहयोग राशि दर्ज करें (₹ INR)</label>
-                <input type="number" id="amount" placeholder="जैसे: 101, 501, 1100, 2100" min="1">
-                
-                <button class="pay-btn" onclick="initiatePayment()">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                    सुरक्षित दान करें
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <p>© 2026 श्री प्रगट हनुमान जी देवस्थानम् | भोपाल, मध्य प्रदेश</p>
-        <p class="dev-credits">Designed with Devotion</p>
-    </footer>
-
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-    <script src="script.js"></script>
-
-</body>
-</html>
+            <ul id="navLinks">

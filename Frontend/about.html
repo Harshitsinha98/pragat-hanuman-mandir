@@ -6,19 +6,137 @@
     <title>मन्दिर इतिहास - श्री प्रगट हनुमान जी देवस्थानम्</title>
     <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* Desktop features control */
+        .mobile-audio-li { display: none !important; }
+
+        /* Mobile Specific Overwrite Rules with Absolute Priority */
+        @media (max-width: 768px) {
+            header {
+                display: flex !important;
+                flex-direction: row !important;
+                justify-content: space-between !important;
+                align-items: center !important;
+                padding: 12px 20px !important;
+            }
+
+            /* Desktop widgets hide on phone */
+            .desktop-audio-widget { display: none !important; }
+            .mobile-audio-li { display: block !important; margin-bottom: 10px; }
+
+            /* Inside Mobile Menu Audio Button Styling */
+            #audio-control-widget-mobile {
+                background: linear-gradient(135deg, #ff6600, #ff9933);
+                color: white !important;
+                padding: 12px 20px;
+                border-radius: 25px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+                font-size: 15px;
+                font-weight: bold;
+                cursor: pointer;
+                box-shadow: 0 4px 12px rgba(255, 102, 0, 0.3);
+            }
+
+            /* FORCE HAMBURGER VISIBILITY */
+            .hamburger {
+                display: flex !important;
+                flex-direction: column !important;
+                justify-content: center !important;
+                gap: 5px !important;
+                background: transparent !important;
+                border: none !important;
+                cursor: pointer !important;
+                padding: 8px !important;
+                z-index: 10005 !important;
+                width: 40px;
+                height: 40px;
+            }
+
+            .hamburger span {
+                display: block !important;
+                width: 26px !important;
+                height: 3px !important;
+                background-color: #ffffff !important;
+                border-radius: 3px !important;
+                transition: transform 0.3s ease, opacity 0.3s ease !important;
+            }
+
+            /* Cross (X) Animation Overwrites */
+            .hamburger.active span:nth-child(1) {
+                transform: translateY(8px) rotate(45deg) !important;
+            }
+            .hamburger.active span:nth-child(2) {
+                opacity: 0 !important;
+            }
+            .hamburger.active span:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg) !important;
+            }
+
+            /* Responsive Drawer Containers layout */
+            #navLinks {
+                display: flex !important;
+                flex-direction: column !important;
+                position: fixed !important;
+                top: 0 !important;
+                right: -100% !important; 
+                width: 70% !important; 
+                height: 100vh !important;
+                background-color: #2b1810 !important;
+                padding: 110px 24px 24px 24px !important;
+                box-shadow: -8px 0 25px rgba(0,0,0,0.6) !important;
+                z-index: 10001 !important;
+                gap: 15px !important;
+                transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+            }
+
+            #navLinks.active {
+                right: 0 !important;
+            }
+
+            #navLinks li {
+                width: 100% !important;
+                margin-left: 0 !important;
+                list-style: none !important;
+            }
+
+            #navLinks li a {
+                display: block !important;
+                font-size: 16px !important;
+                color: #FFFFFF !important;
+                padding: 12px 0 !important;
+                text-decoration: none !important;
+                border-bottom: 1px solid rgba(255, 102, 0, 0.12) !important;
+            }
+
+            .nav-donate-btn {
+                background-color: #ff6600 !important;
+                color: white !important;
+                text-align: center !important;
+                border-radius: 25px !important;
+                padding: 12px !important;
+                margin-top: 10px !important;
+                border-bottom: none !important;
+            }
+        }
+    </style>
 </head>
 <body>
 
     <header>
-    <audio id="bgAudio" loop>
-    <source src="images/hanuman-chalisa.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-</audio>
+        <audio id="bgAudio" loop>
+            <source src="images/hanuman-chalisa.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
 
-<div id="audio-control-widget" onclick="toggleAudio()">
-    <span id="audio-icon">🎵</span>
-    <span id="audio-text">हनुमान चालीसा</span>
-</div>
+        <div id="audio-control-widget" class="desktop-audio-widget" onclick="toggleAudio()">
+            <span id="audio-icon">🎵</span>
+            <span id="audio-text">हनुमान चालीसा</span>
+        </div>
+
         <a href="index.html" class="logo-link">
             <div class="logo-container">
                 <img src="images/logo.png" alt="Mandir Logo" class="mandir-logo">
@@ -28,13 +146,25 @@
                 </div>
             </div>
         </a>
+
         <nav>
-            <ul>
+            <button class="hamburger" id="hamburgerBtn" aria-label="Menu" style="display: none;">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul id="navLinks">
+                <li class="mobile-audio-li">
+                    <div id="audio-control-widget-mobile" onclick="toggleAudio()">
+                        <span>🎵</span> <span>हनुमान चालीसा</span>
+                    </div>
+                </li>
                 <li><a href="index.html">होम</a></li>
                 <li><a href="about.html" class="active">मन्दिर इतिहास</a></li>
                 <li><a href="gallery.html">गैलरी</a></li>
                 <li><a href="contact.html">संपर्क करें</a></li>
-                <li><a href="index.html#donation" class="nav-donate-btn">सेवा / दान</a></li>
+                <li><a href="#donation" class="nav-donate-btn">सेवा / दान</a></li>
             </ul>
         </nav>
     </header>
@@ -48,7 +178,6 @@
         <div class="about-grid">
             
             <div class="about-left">
-                
                 <div class="profile-card idol-card">
                     <div class="image-box">
                         <img src="images/murti.jpg" alt="Actual Idol of Pragat Hanuman Ji" class="about-img">
@@ -91,9 +220,168 @@
         </div>
     </section>
 
+    <section id="donation" class="donation-section" style="padding: 60px 20px; background: #fffcf7; text-align: center;">
+        <div class="section-title">
+            <span>Contribution</span>
+            <h2>मन्दिर सेवा एवं दान</h2>
+            <div class="tilak-divider"></div>
+        </div>
+        
+        <div style="max-width: 850px; margin: 40px auto; display: flex; flex-wrap: wrap; background: #ffffff; border-radius: 16px; box-shadow: 0 10px 30px rgba(255, 102, 0, 0.1); overflow: hidden; border: 1px solid rgba(255, 102, 0, 0.15);">
+            
+            <div style="flex: 1; min-width: 280px; background: linear-gradient(135deg, #ff6600, #ff9933); padding: 40px; display: flex; flex-direction: column; justify-content: center; align-items: center; color: #ffffff; text-align: center;">
+                <h3 style="font-size: 28px; margin-bottom: 20px; font-family: 'Marcellus', serif; text-shadow: 1px 1px 2px rgba(0,0,0,0.2);">भव्य निर्माण और भंडारे में सहयोग करें</h3>
+                <div style="width: 50px; height: 3px; background: #ffffff; margin-bottom: 20px; border-radius: 2px;"></div>
+                <p style="font-size: 15px; line-height: 1.6; opacity: 0.95; font-weight: 300;">मन्दिर के विकास कार्यों, गऊ सेवा, एवं निरंतर चलने वाले भंडारे में अपनी श्रद्धा अनुसार ऑनलाइन सहयोग राशि भेजें।</p>
+                <p style="font-size: 14px; margin-top: 15px; font-style: italic; background: rgba(255,255,255,0.2); padding: 8px 15px; border-radius: 20px;">🙏 पावन रसीद आपके ईमेल पर स्वतः भेज दी जाएगी।</p>
+            </div>
+            
+            <div style="flex: 1.2; min-width: 320px; padding: 40px; text-align: left; background: #ffffff;">
+                <form id="donationForm" style="display: flex; flex-direction: column; gap: 16px;">
+                    <div style="display: flex; flex-direction: column;">
+                        <label style="font-weight: 500; font-size: 14px; color: #444; margin-bottom: 6px;">भक्त का नाम *</label>
+                        <input type="text" id="donorName" placeholder="अपना नाम दर्ज करें" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px; outline: none; transition: 0.3s; font-family: 'Poppins', sans-serif;">
+                    </div>
+                    
+                    <div style="display: flex; flex-direction: column;">
+                        <label style="font-weight: 500; font-size: 14px; color: #444; margin-bottom: 6px;">ईमेल आईडी * (रसीद के लिए)</label>
+                        <input type="email" id="donorEmail" placeholder="username@gmail.com" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px; outline: none; font-family: 'Poppins', sans-serif;">
+                    </div>
+                    
+                    <div style="display: flex; flex-direction: column;">
+                        <label style="font-weight: 500; font-size: 14px; color: #444; margin-bottom: 6px;">मोबाइल नंबर *</label>
+                        <input type="tel" id="donorPhone" placeholder="10 अंकों का मोबाइल नंबर" required pattern="[0-9]{10}" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px; outline: none; font-family: 'Poppins', sans-serif;">
+                    </div>
+                    
+                    <div style="display: flex; flex-direction: column;">
+                        <label style="font-weight: 500; font-size: 14px; color: #444; margin-bottom: 6px;">गोत्र (यदि देना चाहें)</label>
+                        <input type="text" id="donorGotra" placeholder="अपना गोत्र लिखें (Optional)" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px; outline: none; font-family: 'Poppins', sans-serif;">
+                    </div>
+                    
+                    <div style="display: flex; flex-direction: column;">
+                        <label style="font-weight: 600; font-size: 14px; color: #ff6600; margin-bottom: 6px;">सहयोग राशि (₹ Amount) *</label>
+                        <input type="number" id="donationAmount" placeholder="जैसे: 501, 1100, 2100" min="1" required style="width: 100%; padding: 12px; border: 2px solid #ff6600; border-radius: 8px; font-size: 16px; font-weight: bold; outline: none; color: #ff6600; font-family: 'Poppins', sans-serif;">
+                    </div>
+                    
+                    <button type="submit" style="background: #ff6600; color: #ffffff; border: none; padding: 14px; font-size: 16px; font-weight: bold; cursor: pointer; border-radius: 8px; display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 10px; box-shadow: 0 4px 12px rgba(255, 102, 0, 0.3); transition: 0.3s;">
+                        <img src="https://img.icons8.com/ios-filled/20/ffffff/rupee.png" alt="rupee"/> सुरक्षित दान करें 🙏
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
     <footer>
         <p>© 2026 श्री प्रगट हनुमान जी देवस्थानम् | भोपाल, मध्य प्रदेश</p>
     </footer>
 
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+        // Hanuman Chalisa Core Audio Engine Function
+        function toggleAudio() {
+            const audio = document.getElementById("bgAudio");
+            if (audio.paused) {
+                audio.play();
+                document.getElementById("audio-icon").innerText = "⏸️";
+            } else {
+                audio.pause();
+                document.getElementById("audio-icon").innerText = "🎵";
+            }
+        }
+
+        // Concentrated Safe Execution DOM Block 
+        document.addEventListener("DOMContentLoaded", function() {
+            
+            // 1. Mobile Menu View Slider Handlers
+            const hamburgerBtn = document.getElementById('hamburgerBtn');
+            const navLinks = document.getElementById('navLinks');
+
+            if (hamburgerBtn && navLinks) {
+                hamburgerBtn.addEventListener('click', function() {
+                    hamburgerBtn.classList.toggle('active');
+                    navLinks.classList.toggle('active');
+                });
+                
+                navLinks.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        hamburgerBtn.classList.remove('active');
+                        navLinks.classList.remove('active');
+                    });
+                });
+            }
+
+            // 2. Donation Data Interceptor Listener Logic
+            const form = document.getElementById('donationForm');
+            if (form) {
+                form.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    
+                    const formData = {
+                        name: document.getElementById('donorName').value,
+                        email: document.getElementById('donorEmail').value,
+                        phone: document.getElementById('donorPhone').value,
+                        gotra: document.getElementById('donorGotra').value || 'N/A',
+                        amount: document.getElementById('donationAmount').value
+                    };
+
+                    await initiateDonation(formData);
+                });
+            }
+        });
+
+        // 3. Razorpay Fetch Gateway Route Processing
+        async function initiateDonation(formData) {
+            try {
+                const res = await fetch('https://pragat-hanuman-mandir.onrender.com/create-order', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ amount: formData.amount })
+                });
+                
+                const data = await res.json();
+                
+                if (data.success) {
+                    var options = {
+                        "key": data.key_id,
+                        "amount": data.amount,
+                        "currency": "INR",
+                        "name": "श्री प्रगट हनुमान जी देवस्थानम",
+                        "description": "मंदिर सेवा/निर्माण दान",
+                        "order_id": data.order_id,
+                        "handler": async function (response){
+                            await fetch('https://pragat-hanuman-mandir.onrender.com/api/payment/success', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({
+                                    razorpay_payment_id: response.razorpay_payment_id,
+                                    razorpay_order_id: response.razorpay_order_id,
+                                    amount: formData.amount,
+                                    name: formData.name,
+                                    email: formData.email,
+                                    phone: formData.phone,
+                                    gotra: formData.gotra
+                                })
+                            });
+                            alert("दान सफलतापूर्वक प्राप्त हुआ! रसीद आपके ईमेल पर भेज दी गई है। 🙏");
+                            document.getElementById('donationForm').reset();
+                        },
+                        "prefill": {
+                            "name": formData.name,
+                            "email": formData.email,
+                            "contact": formData.phone
+                        },
+                        "theme": { "color": "#ff6600" }
+                    };
+                    var rzp1 = new Razorpay(options);
+                    rzp1.open();
+                } else {
+                    alert("सर्वर से संपर्क नहीं हो पाया, कृपया दोबारा प्रयास करें।");
+                }
+            } catch (err) {
+                console.error(err);
+                alert("नेटवर्क त्रुटि! कृपया जांचें कि आपका इंटरनेट चल रहा है या नहीं।");
+            }
+        }
+    </script>
 </body>
 </html>
