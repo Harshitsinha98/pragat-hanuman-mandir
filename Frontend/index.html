@@ -354,16 +354,85 @@
     <footer>
         <p><strong>स्थान:</strong> सूखी सेवनिया (भोपाल-विदिशा मार्ग), भोपाल, मध्य प्रदेश</p>
         <p>संपर्क सूत्र: +91 7000194918, 07552590599</p>
-        <p class="dev-credits">© 2026 श्री प्रगट हनुमान जी देवस्थानम् | Designed with Devotion</p>
+        <p class="dev-credits">© 2026 श्री प्रगट हनुमान जी देवस्थानम् | Designed with Devotion By Harshit Sinha</p>
     </footer>
 
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-
     <script>
-        // 1. Payment Success/Order Handling Function
+        // 🌟 CORE AUDIO ENGINE: Yeh hanuman chalisa ko zinda karega
+        function toggleAudio() {
+            const audio = document.getElementById("bgAudio");
+            const audioIcon = document.getElementById("audio-icon");
+            const mobileWidget = document.getElementById("audio-control-widget-mobile");
+            
+            if (audio.paused) {
+                audio.play().then(() => {
+                    // Desktop button update
+                    if(audioIcon) audioIcon.innerText = "⏸️";
+                    
+                    // Mobile inside drawer button update (Color gradient green for playing state)
+                    if(mobileWidget) {
+                        mobileWidget.style.background = "linear-gradient(135deg, #2e7d32, #4caf50)";
+                        mobileWidget.querySelector('span:last-child').innerText = "चल रहा है... ⏸️";
+                    }
+                }).catch(err => {
+                    console.error("Audio playback failed:", err);
+                    alert("कृपया स्क्रीन पर कहीं भी एक बार क्लिक करें, फिर चालीसा प्ले करें! (Browser Security Rule)");
+                });
+            } else {
+                audio.pause();
+                // Reset to default orange style
+                if(audioIcon) audioIcon.innerText = "🎵";
+                if(mobileWidget) {
+                    mobileWidget.style.background = "linear-gradient(135deg, #ff6600, #ff9933)";
+                    mobileWidget.querySelector('span:last-child').innerText = "हनुमान चालीsa";
+                }
+            }
+        }
+
+        // Mobile Menu Responsive Logic Fix
+        document.addEventListener("DOMContentLoaded", function() {
+            const hamburgerBtn = document.getElementById('hamburgerBtn');
+            const navLinks = document.getElementById('navLinks');
+
+            if (hamburgerBtn && navLinks) {
+                hamburgerBtn.addEventListener('click', function() {
+                    hamburgerBtn.classList.toggle('active'); 
+                    navLinks.classList.toggle('active');     
+                });
+                
+                navLinks.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        hamburgerBtn.classList.remove('active');
+                        navLinks.classList.remove('active');
+                    });
+                });
+            }
+        });
+
+        // Form Submit Event Handler
+        document.addEventListener("DOMContentLoaded", function() {
+            const form = document.getElementById('donationForm');
+            if (form) {
+                form.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    
+                    const formData = {
+                        name: document.getElementById('donorName').value,
+                        email: document.getElementById('donorEmail').value,
+                        phone: document.getElementById('donorPhone').value,
+                        gotra: document.getElementById('donorGotra').value || 'N/A',
+                        amount: document.getElementById('donationAmount').value
+                    };
+
+                    await initiateDonation(formData);
+                });
+            }
+        });
+
+        // Razorpay Order Creation and Success Tracking
         async function initiateDonation(formData) {
             try {
-                // Backend par order create karne ki request
                 const res = await fetch('https://pragat-hanuman-mandir.onrender.com/create-order', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -381,7 +450,6 @@
                         "description": "मंदिर सेवा/निर्माण दान",
                         "order_id": data.order_id,
                         "handler": async function (response){
-                            // Payment success hote hi backend par mail trigger hoga
                             await fetch('https://pragat-hanuman-mandir.onrender.com/api/payment/success', {
                                 method: 'POST',
                                 headers: { 'Content-Type': 'application/json' },
@@ -415,50 +483,6 @@
                 alert("नेटवर्क त्रुटि! कृपया जांचें कि आपका इंटरनेट चल रहा है या नहीं।");
             }
         }
-
-       // ==========================================================================
-        // ALL FRONTEND LOGICS (DOM CONTENT LOADED) - 100% FIXED VERSION
-        // ==========================================================================
-        document.addEventListener("DOMContentLoaded", function() {
-            
-            // 1. Mobile Menu Responsive Logic (Hamburger Toggle)
-            const hamburgerBtn = document.getElementById('hamburgerBtn');
-            const navLinks = document.getElementById('navLinks');
-
-            if (hamburgerBtn && navLinks) {
-                hamburgerBtn.addEventListener('click', function() {
-                    hamburgerBtn.classList.toggle('active'); // Line animation switch toggler
-                    navLinks.classList.toggle('active');     // Drawer slide-in triggers
-                });
-                
-                // Clicking any links inside drawer triggers auto-collapse smoothly
-                navLinks.querySelectorAll('a').forEach(link => {
-                    link.addEventListener('click', () => {
-                        hamburgerBtn.classList.remove('active');
-                        navLinks.classList.remove('active');
-                    });
-                });
-            }
-
-            // 2. Donation Form Submission Event Handler
-            const form = document.getElementById('donationForm');
-            if (form) {
-                form.addEventListener('submit', async function(e) {
-                    e.preventDefault(); // Stop native page reload routing
-                    
-                    const formData = {
-                        name: document.getElementById('donorName').value,
-                        email: document.getElementById('donorEmail').value,
-                        phone: document.getElementById('donorPhone').value,
-                        gotra: document.getElementById('donorGotra').value || 'N/A',
-                        amount: document.getElementById('donationAmount').value
-                    };
-
-                    // Trigger the Razorpay core function setup
-                    await initiateDonation(formData);
-                });
-            }
-        });
     </script>
 </body>
 </html>
