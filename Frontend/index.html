@@ -7,6 +7,100 @@
     <!-- Premium Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Poppins:wght@300;400;500;600&display=empty" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+<style>
+        /* Mobile Specific Overwrite Rules to bypass style.css clash */
+        @media (max-width: 768px) {
+            header {
+                display: flex !important;
+                flex-direction: row !important; /* Logo aur Hamburger ko side-by-side rakhega */
+                justify-content: space-between !important;
+                align-items: center !important;
+                padding: 12px 20px !important;
+                gap: 0px !important;
+            }
+
+            /* Hamburger Button Setup */
+            .hamburger {
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 5px !important;
+                background: none !important;
+                border: none !important;
+                cursor: pointer !important;
+                padding: 5px !important;
+                z-index: 10002 !important;
+            }
+
+            .hamburger span {
+                display: block !important;
+                width: 25px !important;
+                height: 3px !important;
+                background-color: #ffffff !important;
+                border-radius: 3px !important;
+                transition: 0.3s ease !important;
+            }
+
+            /* Hamburger Lines to X Cross Animation */
+            .hamburger.active span:nth-child(1) {
+                transform: translateY(8px) rotate(45deg) !important;
+            }
+            .hamburger.active span:nth-child(2) {
+                opacity: 0 !important;
+            }
+            .hamburger.active span:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg) !important;
+            }
+
+            /* Side Drawer Overlap Container Fix */
+            #navLinks {
+                display: flex !important;
+                flex-direction: column !important;
+                position: fixed !important;
+                top: 0 !important;
+                right: -100% !important; /* By default screen ke baahar rahega */
+                width: 65% !important; /* Perfect drawer ratio */
+                height: 100vh !important;
+                background-color: #2b1810 !important; /* Deep Premium Dark Saffron/Chocolaty Brown */
+                padding: 100px 24px 24px 24px !important;
+                box-shadow: -5px 0 25px rgba(0,0,0,0.5) !important;
+                z-index: 10001 !important;
+                gap: 20px !important;
+                transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+            }
+
+            /* Slide in drawer cleanly when class active toggles */
+            #navLinks.active {
+                right: 0 !important;
+            }
+
+            #navLinks li {
+                width: 100% !important;
+                margin-left: 0 !important;
+                text-align: left !important;
+                list-style: none !important;
+            }
+
+            #navLinks li a {
+                display: block !important;
+                font-size: 16px !important;
+                color: #FFFFFF !important;
+                padding: 12px 0 !important;
+                text-decoration: none !important;
+                border-bottom: 1px solid rgba(255, 102, 0, 0.15) !important;
+            }
+
+            /* Donate Nav Button Styling for mobile */
+            .nav-donate-btn {
+                background-color: #ff6600 !important;
+                color: white !important;
+                text-align: center !important;
+                border-radius: 25px !important;
+                padding: 10px !important;
+                margin-top: 10px !important;
+                border-bottom: none !important;
+            }
+        }
+    </style>    
 </head>
 <body>
 
