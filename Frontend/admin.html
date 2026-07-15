@@ -3,127 +3,230 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>गुरुजी डैशबोर्ड - सेवा रिकॉर्ड</title>
-    <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <title>गुरुजी डैशबोर्ड | सेवा रिकॉर्ड</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" href="images/logo.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Mukta:wght@400;500;600;700&family=Poppins:wght@400;500;600&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        .admin-page { max-width: 1200px; margin: 40px auto; padding: 30px; background: #fff; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #F0E2D5; }
-        .login-box { text-align: center; max-width: 400px; margin: 80px auto; padding: 40px; background: #fff; border-radius: 12px; box-shadow: 0 10px 30px rgba(122,0,22,0.08); border: 1px solid #F0E2D5; }
-        .admin-input { width: 100%; padding: 12px; margin: 15px 0; border: 1px solid #ccc; border-radius: 8px; font-size: 16px; text-align: center; outline: none; font-family: 'Poppins', sans-serif; }
-        .admin-input:focus { border-color: #7a0016; }
-        .admin-btn { background: var(--primary-maroon, #7a0016); color: white; border: none; padding: 12px 30px; border-radius: 25px; font-size: 16px; cursor: pointer; font-weight: 600; width: 100%; transition: 0.3s; }
-        .admin-btn:hover { background: #5a0010; transform: translateY(-1px); }
-        
-        .table-wrapper { overflow-x: auto; margin-top: 25px; border-radius: 8px; border: 1px solid #eee; }
-        .record-table { width: 100%; border-collapse: collapse; min-width: 850px; font-size: 14px; }
-        .record-table th, .record-table td { padding: 14px; border-bottom: 1px solid #eee; text-align: left; }
-        .record-table th { background-color: var(--primary-maroon, #7a0016); color: white; font-family: 'Marcellus', serif; font-weight: 500; text-transform: uppercase; font-size: 13px; letter-spacing: 0.5px; }
-        .record-table tr:nth-child(even) { background-color: #fffdfa; }
-        .record-table tr:hover { background-color: #fff5f0; }
-        
-        .status-success { color: #2e7d32; font-weight: bold; background: #e8f5e9; padding: 4px 10px; border-radius: 20px; font-size: 12px; display: inline-block; }
-    </style>
-</head>
-<body style="background-color: var(--light-bg, #fff3dd);">
-
-    <div id="login-area" class="login-box">
-        <h2 style="font-family: 'Marcellus', serif; color: #7a0016;">दरबार एडमिन लॉगिन</h2>
-        <p style="font-size: 14px; color: #666; margin-top: 5px;">कृपया गुरुजी का सुरक्षित पासवर्ड दर्ज करें</p>
-        <input type="password" id="admin-password" class="admin-input" placeholder="पासवर्ड यहाँ लिखें...">
-        <button onclick="checkAdminPassword()" class="admin-btn">डैशबोर्ड खोलें 🙏</button>
-        <p id="error-msg" style="color: red; margin-top: 15px; font-size: 14px; display: none;"></p>
-    </div>
-
-    <div id="dashboard-area" class="admin-page" style="display: none;">
-        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #7a0016; padding-bottom: 15px;">
-            <div>
-                <h2 style="font-family: 'Marcellus', serif; color: #7a0016; margin: 0;">ऑनलाइन सहयोग निधि रिकॉर्ड 🚩</h2>
-                <p style="font-size: 13px; color: #666; margin-top: 2px;">श्री प्रगट हनुमान जी देवस्थानम्, सूखी सेवनिया</p>
-            </div>
-            <button onclick="location.reload()" style="background:#666; color:white; border:none; padding:10px 20px; border-radius:20px; cursor:pointer; font-weight: 600; font-size: 13px;">लॉगआउट 🚪</button>
-        </div>
-        
-        <div class="table-wrapper">
-            <table class="record-table">
-                <thead>
-                    <tr>
-                        <th>दिनांक एवं समय</th>
-                        <th>भक्त का नाम</th>
-                        <th>मोबाइल नंबर</th>
-                        <th>गोत्र (Gotra)</th>
-                        <th>सहयोग राशि</th>
-                        <th>Payment ID / टोकन</th>
-                        <th>स्थिति (Status)</th>
-                    </tr>
-                </thead>
-                <tbody id="records-list">
-                    </tbody>
-            </table>
-        </div>
-    </div>
-
-    <script>
-        let savedPassword = "";
-
-        async function checkAdminPassword() {
-            const password = document.getElementById('admin-password').value;
-            const errorMsg = document.getElementById('error-msg');
-            errorMsg.style.display = 'none';
-            
-            try {
-                // 🌟 FIXED: Localhost ko hatakar live Render URL se connect kar diya hai
-                const response = await fetch('https://pragat-hanuman-mandir.onrender.com/api/admin/records', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ password: password })
-                });
-                
-                const data = await response.json();
-                
-                if (response.ok && data.success) {
-                    savedPassword = password;
-                    document.getElementById('login-area').style.display = 'none';
-                    document.getElementById('dashboard-area').style.display = 'block';
-                    
-                    // Render Table Records Pipeline
-                    const tbody = document.getElementById('records-list');
-                    tbody.innerHTML = "";
-                    
-                    if(!data.records || data.records.length === 0) {
-                        tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; padding: 30px; color:#888;">अभी तक कोई ऑनलाइन सहयोग प्राप्त नहीं हुआ है।</td></tr>`;
-                    } else {
-                        // 🌟 FIXED: Saare field render honge ab (Naam, Phone, Gotra, Time)
-                        data.records.forEach(rec => {
-                            tbody.innerHTML += `
-                                <tr>
-                                    <td style="color: #555;">${rec.date || 'N/A'}</td>
-                                    <td style="font-weight: 600; color: #111;">${rec.name || 'अज्ञात भक्त'}</td>
-                                    <td>${rec.phone || 'N/A'}</td>
-                                    <td style="font-style: italic; color: #666;">${rec.gotra || 'N/A'}</td>
-                                    <td style="color: #ff6600; font-weight: bold; font-size: 15px;">₹${rec.amount}</td>
-                                    <td><code>${rec.id}</code></td>
-                                    <td><span class="status-success">सफल (Success)</span></td>
-                                </tr>
-                            `;
-                        });
-                    }
-                } else {
-                    errorMsg.innerText = data.message || "गलत पासवर्ड! कृपया पुनः प्रयास करें।";
-                    errorMsg.style.display = 'block';
-                }
-            } catch (err) {
-                console.error(err);
-                errorMsg.innerText = "सर्वर से संपर्क नहीं हो सका। कृपया सुनिश्चित करें कि आपका इंटरनेट और Render Server दोनों एक्टिव हैं।";
-                errorMsg.style.display = 'block';
-            }
+        .admin-bg {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #2b0a12, #14060a);
+            padding: 40px 0;
         }
 
-        // Enter key dabane par bhi automatic login ho jaye, uski shortcut setting
-        document.getElementById('admin-password').addEventListener('keypress', function (e) {
-            if (e.key === 'Enter') {
-                checkAdminPassword();
+        /* Login */
+        .login-box {
+            max-width: 420px;
+            margin: 6vh auto;
+            background: #fff;
+            border-radius: var(--radius-lg);
+            padding: 44px 36px;
+            box-shadow: var(--shadow-lg);
+            border-top: 5px solid var(--gold);
+            text-align: center;
+        }
+        .login-box .om { font-size: 42px; }
+        .login-box h2 { font-family: var(--font-display); color: var(--maroon); margin: 8px 0 4px; }
+        .login-box p { font-size: 14px; color: var(--ink-soft); margin-bottom: 18px; }
+        .admin-input {
+            width: 100%;
+            padding: 13px 16px;
+            margin-bottom: 16px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            text-align: center;
+            font-family: var(--font-body);
+            outline: none;
+            transition: border-color .25s ease, box-shadow .25s ease;
+        }
+        .admin-input:focus { border-color: var(--maroon); box-shadow: 0 0 0 3px rgba(122,0,22,.1); }
+        .error-msg { color: #c62828; margin-top: 12px; font-size: 14px; display: none; }
+
+        /* Dashboard */
+        .dashboard { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+        .dash-head {
+            display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;
+            background: #fff; border-radius: var(--radius); padding: 22px 26px; box-shadow: var(--shadow-md);
+            border-left: 5px solid var(--maroon); margin-bottom: 22px;
+        }
+        .dash-head h2 { font-family: var(--font-display); color: var(--maroon); font-size: 22px; }
+        .dash-head p { font-size: 13px; color: var(--ink-soft); margin-top: 2px; }
+
+        .summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-bottom: 22px; }
+        .summary-card {
+            background: #fff; border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow-sm);
+            border: 1px solid var(--line); text-align: center;
+        }
+        .summary-card .val { font-family: var(--font-display); font-size: 30px; color: var(--maroon); }
+        .summary-card .lbl { font-size: 13px; color: var(--ink-soft); margin-top: 4px; }
+        .summary-card.accent .val { color: var(--saffron); }
+
+        .table-card { background: #fff; border-radius: var(--radius); box-shadow: var(--shadow-md); overflow: hidden; }
+        .toolbar { display: flex; gap: 12px; flex-wrap: wrap; padding: 18px; border-bottom: 1px solid var(--line); }
+        .toolbar input {
+            flex: 1; min-width: 200px; padding: 10px 14px; border: 1px solid #ddd; border-radius: 10px;
+            font-family: var(--font-body); outline: none;
+        }
+        .table-wrapper { overflow-x: auto; }
+        .record-table { width: 100%; border-collapse: collapse; min-width: 900px; font-size: 14px; }
+        .record-table th, .record-table td { padding: 14px 16px; border-bottom: 1px solid #f0eae8; text-align: left; }
+        .record-table th {
+            background: var(--maroon); color: #fff; font-family: var(--font-body); font-weight: 600;
+            text-transform: uppercase; font-size: 12px; letter-spacing: .5px; position: sticky; top: 0;
+        }
+        .record-table tr:nth-child(even) { background: #fffdfa; }
+        .record-table tr:hover { background: #fff5f0; }
+        .record-table code { background: #f4eee9; padding: 2px 6px; border-radius: 6px; font-size: 12px; }
+        .status-success {
+            color: #2e7d32; font-weight: 600; background: #e8f5e9; padding: 4px 12px;
+            border-radius: 40px; font-size: 12px; display: inline-block;
+        }
+        .amount-cell { color: var(--saffron); font-weight: 700; font-size: 15px; }
+        .btn-logout {
+            background: var(--ink-soft); color: #fff; border: none; padding: 10px 20px;
+            border-radius: 40px; cursor: pointer; font-weight: 600; font-size: 13px; font-family: var(--font-body);
+        }
+        .btn-logout:hover { background: var(--maroon); }
+        .empty { text-align: center; padding: 40px; color: #999; }
+    </style>
+</head>
+<body>
+<div class="admin-bg">
+
+    <!-- Login -->
+    <div id="login-area" class="login-box">
+        <div class="om">🕉️</div>
+        <h2>दरबार एडमिन लॉगिन</h2>
+        <p>कृपया गुरुजी का सुरक्षित पासवर्ड दर्ज करें</p>
+        <input type="password" id="admin-password" class="admin-input" placeholder="पासवर्ड यहाँ लिखें…" autocomplete="current-password">
+        <button onclick="checkAdminPassword()" class="btn btn--saffron btn--block" id="loginBtn">डैशबोर्ड खोलें 🙏</button>
+        <p id="error-msg" class="error-msg"></p>
+    </div>
+
+    <!-- Dashboard -->
+    <div id="dashboard-area" class="dashboard" style="display:none;">
+        <div class="dash-head">
+            <div>
+                <h2>🚩 ऑनलाइन सहयोग निधि रिकॉर्ड</h2>
+                <p>श्री प्रगट हनुमान जी देवस्थानम्, सूखी सेवनिया</p>
+            </div>
+            <button onclick="location.reload()" class="btn-logout">लॉगआउट 🚪</button>
+        </div>
+
+        <div class="summary">
+            <div class="summary-card"><div class="val" id="sum-count">0</div><div class="lbl">कुल दान (Transactions)</div></div>
+            <div class="summary-card accent"><div class="val" id="sum-total">₹0</div><div class="lbl">कुल सहयोग राशि</div></div>
+            <div class="summary-card"><div class="val" id="sum-latest">—</div><div class="lbl">नवीनतम दान</div></div>
+        </div>
+
+        <div class="table-card">
+            <div class="toolbar">
+                <input type="text" id="searchBox" placeholder="🔍 नाम, मोबाइल, गोत्र या Payment ID से खोजें…">
+            </div>
+            <div class="table-wrapper">
+                <table class="record-table">
+                    <thead>
+                        <tr>
+                            <th>दिनांक व समय</th>
+                            <th>भक्त का नाम</th>
+                            <th>मोबाइल</th>
+                            <th>गोत्र</th>
+                            <th>राशि</th>
+                            <th>Payment ID</th>
+                            <th>स्थिति</th>
+                        </tr>
+                    </thead>
+                    <tbody id="records-list"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    const ADMIN_URL = "https://pragat-hanuman-mandir.onrender.com/api/admin/records";
+    let allRecords = [];
+
+    async function checkAdminPassword() {
+        const password = document.getElementById('admin-password').value;
+        const errorMsg = document.getElementById('error-msg');
+        const btn = document.getElementById('loginBtn');
+        errorMsg.style.display = 'none';
+        btn.disabled = true;
+        btn.textContent = 'जाँच हो रही है…';
+
+        try {
+            const response = await fetch(ADMIN_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ password })
+            });
+            const data = await response.json();
+
+            if (response.ok && data.success) {
+                document.getElementById('login-area').style.display = 'none';
+                document.getElementById('dashboard-area').style.display = 'block';
+                allRecords = data.records || [];
+                renderSummary(allRecords);
+                renderRecords(allRecords);
+            } else {
+                errorMsg.textContent = data.message || "गलत पासवर्ड! कृपया पुनः प्रयास करें।";
+                errorMsg.style.display = 'block';
             }
-        });
-    </script>
+        } catch (err) {
+            console.error(err);
+            errorMsg.textContent = "सर्वर से संपर्क नहीं हो सका। कृपया इंटरनेट व सर्वर स्थिति जाँचें।";
+            errorMsg.style.display = 'block';
+        } finally {
+            btn.disabled = false;
+            btn.textContent = 'डैशबोर्ड खोलें 🙏';
+        }
+    }
+
+    function renderSummary(records) {
+        const total = records.reduce((sum, r) => sum + (Number(r.amount) || 0), 0);
+        document.getElementById('sum-count').textContent = records.length;
+        document.getElementById('sum-total').textContent = '₹' + total.toLocaleString('en-IN');
+        document.getElementById('sum-latest').textContent = records.length ? ('₹' + records[0].amount) : '—';
+    }
+
+    function renderRecords(records) {
+        const tbody = document.getElementById('records-list');
+        if (!records.length) {
+            tbody.innerHTML = `<tr><td colspan="7" class="empty">अभी तक कोई ऑनलाइन सहयोग प्राप्त नहीं हुआ है।</td></tr>`;
+            return;
+        }
+        tbody.innerHTML = records.map(rec => `
+            <tr>
+                <td style="color:#555;">${rec.date || 'N/A'}</td>
+                <td style="font-weight:600;color:#111;">${rec.name || 'अज्ञात भक्त'}</td>
+                <td>${rec.phone || 'N/A'}</td>
+                <td style="font-style:italic;color:#666;">${rec.gotra || 'N/A'}</td>
+                <td class="amount-cell">₹${rec.amount}</td>
+                <td><code>${rec.id}</code></td>
+                <td><span class="status-success">सफल</span></td>
+            </tr>
+        `).join('');
+    }
+
+    // Live search filter
+    document.getElementById('searchBox').addEventListener('input', function (e) {
+        const q = e.target.value.trim().toLowerCase();
+        const filtered = allRecords.filter(r =>
+            [r.name, r.phone, r.gotra, r.id, r.email].some(v => (v || '').toString().toLowerCase().includes(q))
+        );
+        renderRecords(filtered);
+    });
+
+    // Enter key submits login
+    document.getElementById('admin-password').addEventListener('keypress', e => {
+        if (e.key === 'Enter') checkAdminPassword();
+    });
+</script>
 </body>
 </html>
