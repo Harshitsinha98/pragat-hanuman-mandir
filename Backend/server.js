@@ -87,8 +87,9 @@ const razorpay = new Razorpay({
 const resend = RESEND_API_KEY ? new Resend(RESEND_API_KEY) : null;
 if (!resend) console.warn('⚠️  RESEND_API_KEY not set — receipt emails are disabled.');
 
-// In-memory record store (note: resets on restart — use a DB for persistence)
+// In-memory stores (note: reset on restart — use a DB for persistence)
 let donationRecords = [];
+let pujaBookings = [];
 
 // --------------------------------------------------------------------------
 // Helpers
@@ -239,12 +240,89 @@ app.get('/api/donations', (req, res) => {
     res.status(200).json({ success: true, donations: donationRecords });
 });
 
-// 4. Admin authentication + records
+// 4. Puja / Seva booking (records request + notifies the temple by email)
+app.post('/api/puja/book', paymentLimiter, async (req, res) => {
+    try {
+        const { name, phone, email, gotra, seva, date, note } = req.body;
+
+        if (!name || !phone || !seva || !date) {
+            return res.status(400).json({ success: false, message: 'नाम, मोबाइल, सेवा एवं तिथि आवश्यक हैं।' });
+        }
+        if (!/^\d{7,15}$/.test(String(phone).replace(/\s+/g, ''))) {
+            return res.status(400).json({ success: false, message: 'कृपया वैध मोबाइल नंबर दर्ज करें।' });
+        }
+
+        const indianDate = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
+        const booking = {
+            id: `PUJA-${Date.now()}`,
+            name: String(name).slice(0, 80),
+            phone: String(phone).slice(0, 20),
+            email: email || 'N/A',
+            gotra: gotra || 'N/A',
+            seva: String(seva).slice(0, 80),
+            date: String(date).slice(0, 20),
+            note: (note || '').slice(0, 500),
+            createdAt: indianDate,
+            status: 'Pending',
+        };
+
+        pujaBookings.unshift(booking);
+        console.log('📿 NEW PUJA BOOKING:', JSON.stringify(booking));
+
+        res.json({ success: true, message: 'Booking recorded', id: booking.id });
+
+        if (!resend) return; // email disabled
+
+        // Notify the temple/admin about the new booking
+        resend.emails.send({
+            from: 'मन्दिर सेवा बुकिंग <onboarding@resend.dev>',
+            to: ADMIN_ALERT_EMAIL,
+            subject: `📿 नई सेवा/पूजा बुकिंग - ${escapeHtml(booking.seva)}`,
+            html: `
+                <div style="font-family: Arial; border: 1px solid #7A0016; padding: 20px; background-color: #fffcf8;">
+                    <h3 style="color: #7A0016; margin-top: 0;">वेबसाइट से एक नई सेवा/पूजा बुकिंग प्राप्त हुई है:</h3>
+                    <p><b>भक्त का नाम:</b> ${escapeHtml(booking.name)}</p>
+                    <p><b>सेवा:</b> ${escapeHtml(booking.seva)}</p>
+                    <p><b>वांछित तिथि:</b> ${escapeHtml(booking.date)}</p>
+                    <p><b>मोबाइल:</b> ${escapeHtml(booking.phone)}</p>
+                    <p><b>ईमेल:</b> ${escapeHtml(booking.email)}</p>
+                    <p><b>गोत्र:</b> ${escapeHtml(booking.gotra)}</p>
+                    <p><b>संदेश:</b> ${escapeHtml(booking.note) || '—'}</p>
+                    <p><b>बुकिंग समय:</b> ${escapeHtml(booking.createdAt)}</p>
+                </div>
+            `,
+        })
+            .then(() => console.log('✅ Puja booking alert dispatched!'))
+            .catch((err) => console.error('❌ Resend Booking Mail Error:', err.message));
+
+        // Acknowledge the devotee if an email was provided
+        if (email && isValidEmail(email)) {
+            resend.emails.send({
+                from: MAIL_FROM,
+                to: email,
+                subject: 'सेवा/पूजा बुकिंग प्राप्त हुई - श्री प्रगट हनुमान जी देवस्थानम 🙏',
+                html: `
+                    <div style="font-family: Arial; border: 2px solid #7A0016; padding: 20px; max-width: 600px; border-radius: 10px; background-color: #fffcf8;">
+                        <h2 style="color: #FF6F00; text-align: center;">जय श्री राम | जय हनुमान</h2>
+                        <p>प्रिय भक्त <b>${escapeHtml(booking.name)}</b> जी,</p>
+                        <p>आपकी <b>${escapeHtml(booking.seva)}</b> सेवा हेतु बुकिंग (दिनांक: ${escapeHtml(booking.date)}) सफलतापूर्वक दर्ज हो गई है। मन्दिर परिवार शीघ्र ही आपसे संपर्क कर विवरण की पुष्टि करेगा।</p>
+                        <p style="text-align:center; color:#FF6F00; font-weight:bold;">।। हनुमान जी महाराज का आशीर्वाद आप पर सदा बना रहे ।।</p>
+                    </div>
+                `,
+            }).catch((err) => console.error('❌ Resend Booking Ack Error:', err.message));
+        }
+    } catch (error) {
+        console.error('Puja Booking Error:', error);
+        if (!res.headersSent) res.status(500).json({ success: false, message: 'Internal error' });
+    }
+});
+
+// 5. Admin authentication + records
 app.post('/api/admin/records', adminLimiter, (req, res) => {
     const { password } = req.body;
     const expected = ADMIN_PASSWORD || 'PragatHanuman@2026'; // fallback for legacy setups
     if (password && password === expected) {
-        return res.json({ success: true, records: donationRecords });
+        return res.json({ success: true, records: donationRecords, bookings: pujaBookings });
     }
     return res.status(401).json({ success: false, message: 'गलत पासवर्ड!' });
 });

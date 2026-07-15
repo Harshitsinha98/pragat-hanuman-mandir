@@ -1,0 +1,28 @@
+{
+  "name": "श्री प्रगट हनुमान जी देवस्थानम्",
+  "short_name": "प्रगट हनुमान",
+  "description": "धरती फाड़कर प्रकट हुए श्री प्रगट हनुमान जी का दिव्य देवस्थानम्, सूखी सेवनिया, भोपाल। दर्शन, आरती समय, पूजा बुकिंग एवं ऑनलाइन दान।",
+  "start_url": "index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#12060a",
+  "theme_color": "#7A0016",
+  "lang": "hi",
+  "dir": "ltr",
+  "categories": ["lifestyle", "education"],
+  "icons": [
+    {
+      "src": "images/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "images/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

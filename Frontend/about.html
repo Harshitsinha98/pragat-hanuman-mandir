@@ -7,6 +7,8 @@
     <meta name="description" content="बरखेड़ा अब्दुल्लाह की पावन धरा को चीरकर प्रकट हुए श्री हनुमान जी का अलौकिक इतिहास, प्राचीन रेशम मार्ग की दिव्यता और मन्नत बाबा का दरबार।">
     <meta name="theme-color" content="#7A0016">
     <link rel="icon" href="images/logo.png" type="image/png">
+    <link rel="apple-touch-icon" href="images/logo.png">
+    <link rel="manifest" href="manifest.json">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,31 +17,47 @@
 </head>
 <body>
 
-    <audio id="bgAudio" loop preload="none">
-        <source src="images/hanuman-chalisa.mp3" type="audio/mpeg">
-    </audio>
+    <div class="preloader" id="preloader">
+        <div style="text-align:center;">
+            <div class="preloader__om">ॐ</div>
+            <div class="preloader__text">जय श्री हनुमान</div>
+            <div class="preloader__ring"></div>
+        </div>
+    </div>
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <audio id="bgAudio" loop preload="none"><source src="images/hanuman-chalisa.mp3" type="audio/mpeg"></audio>
+
+    <div class="announce">
+        <span class="announce__tag">🔔 सूचना</span>
+        <div class="announce__track">
+            <span>🚩 प्रत्येक मंगलवार — मन्नत बाबा का दिव्य दरबार, सुबह 11 से दोपहर 2 बजे तक</span>
+            <span>🪔 प्रतिदिन विशाल भंडारा — सभी श्रद्धालुओं का स्वागत है</span>
+            <span>🕉️ नशामुक्ति संकल्प शिविर — गुरुजी के सानिध्य में</span>
+        </div>
+    </div>
 
     <header class="site-header">
         <div class="container header-inner">
             <a href="index.html" class="brand" aria-label="होम">
                 <img src="images/logo.png" alt="मन्दिर लोगो" class="brand__logo">
-                <span class="brand__text">
-                    <span class="brand__title">प्रगट हनुमानजी</span>
-                    <span class="brand__sub">देवस्थानम् · सूखी सेवनिया</span>
-                </span>
+                <span class="brand__text"><span class="brand__title">प्रगट हनुमानजी</span><span class="brand__sub">देवस्थानम् · सूखी सेवनिया</span></span>
             </a>
-            <button class="nav-toggle" id="navToggle" aria-label="मेन्यू खोलें" aria-controls="primaryNav">
-                <span></span><span></span><span></span>
-            </button>
             <nav class="nav" id="primaryNav">
                 <ul class="nav__list">
                     <li><a class="nav__link" href="index.html">होम</a></li>
                     <li><a class="nav__link active" href="about.html">मन्दिर इतिहास</a></li>
+                    <li><a class="nav__link" href="index.html#seva">सेवाएँ</a></li>
                     <li><a class="nav__link" href="gallery.html">गैलरी</a></li>
                     <li><a class="nav__link" href="contact.html">संपर्क</a></li>
                     <li><a class="nav__link nav__link--donate" href="index.html#donation">🚩 सेवा / दान</a></li>
                 </ul>
             </nav>
+            <div class="header-actions">
+                <button class="icon-btn lang-btn" data-lang-toggle aria-label="भाषा बदलें"><span data-lang-label>ENG</span></button>
+                <button class="icon-btn" data-theme-toggle aria-label="थीम बदलें"><span data-theme-icon>🌙</span></button>
+                <button class="nav-toggle" id="navToggle" aria-label="मेन्यू खोलें" aria-controls="primaryNav"><span></span><span></span><span></span></button>
+            </div>
         </div>
     </header>
     <div class="nav-backdrop" id="navBackdrop"></div>
@@ -55,35 +73,24 @@
             <div class="profile-stack">
                 <div class="profile-card reveal" data-lightbox="images/murti.jpg">
                     <img src="images/murti.jpg" alt="श्री प्रगट हनुमान जी की प्रतिमा" loading="lazy">
-                    <div class="profile-card__body">
-                        <h3>श्री प्रगट हनुमान जी</h3>
-                        <p>स्वयं भू-गर्भ से प्रकट जाग्रत स्वरूप</p>
-                    </div>
+                    <div class="profile-card__body"><h3>श्री प्रगट हनुमान जी</h3><p>स्वयं भू-गर्भ से प्रकट जाग्रत स्वरूप</p></div>
                 </div>
                 <div class="profile-card reveal" data-lightbox="images/guruji.jpg">
                     <img src="images/guruji.jpg" alt="परम पूजनीय गुरुजी" loading="lazy" onerror="this.src='images/logo.png'">
-                    <div class="profile-card__body">
-                        <h3>परम पूजनीय गुरुजी</h3>
-                        <p>"हनुमान जी की भक्ति ही जीवन का परम सत्य है।"</p>
-                    </div>
+                    <div class="profile-card__body"><h3>परम पूजनीय गुरुजी</h3><p>"हनुमान जी की भक्ति ही जीवन का परम सत्य है।"</p></div>
                 </div>
             </div>
 
             <div class="prose reveal">
                 <h2>स्वयं धरा चीरकर प्रकट हुए बाबा</h2>
                 <div class="divider divider--left" style="margin-bottom:24px;"></div>
-
                 <p>यह पावन क्षेत्र कोई साधारण भूमि नहीं है, बल्कि एक अत्यंत जाग्रत और कलयुग के साक्षात चमत्कार का प्रमाण है। बरखेड़ा अब्दुल्लाह (भोपाल-विदिशा मार्ग) की पावन धरा को चीरकर श्री हनुमान जी महाराज स्वयं साक्षात प्रकट हुए हैं।</p>
-
                 <h3>मानसून की वह अलौकिक रात</h3>
                 <p>मानसून के समय जब इस क्षेत्र में खुदाई का कार्य चल रहा था, तब अचानक मिट्टी के बीच एक अलौकिक आकृति का आभास हुआ। मज़दूरों ने जब मिट्टी हटाई, तो साक्षात बजरंगबली का दिव्य मुखारविंद प्रकट हो गया। सुबह होते-होते भूगर्भ से प्राचीन और अलौकिक हनुमान जी की पूर्ण प्रतिमा प्रकट हो चुकी थी।</p>
-
                 <h3>ऐतिहासिक 'रेशम मार्ग' (Silk Route)</h3>
                 <p>शोधकर्ताओं के अनुसार, यह स्थान प्राचीन काल के वैश्विक <strong>रेशम मार्ग (Silk Route)</strong> पर स्थित है। यह मार्ग चीन से शुरू होकर विदिशा-उज्जयिनी तक जाता था। इस प्राचीन मार्ग पर बाबा का प्रकट होना इस भूमि की सदियों पुरानी दिव्यता को दर्शाता है।</p>
-
                 <h3>मन्नत बाबा का दरबार</h3>
                 <p>यहाँ प्रत्येक मंगलवार को विशेष अर्जी लगाई जाती है। यह दरबार न केवल मन्नत पूरी करने के लिए, बल्कि <strong>नशामुक्ति</strong> और मानसिक शांति के लिए भी जाना जाता है। अनेक लोग यहाँ आकर शराब व अन्य व्यसनों को हमेशा के लिए छोड़ने का संकल्प लेते हैं।</p>
-
                 <a href="index.html#donation" class="btn btn--saffron" style="margin-top:12px;">🚩 मन्दिर सेवा में सहयोग करें</a>
             </div>
         </div>
@@ -92,7 +99,7 @@
     <footer class="site-footer">
         <div class="container footer__grid">
             <div class="footer__brand">
-                <span class="brand__title" style="color:#fff;">श्री प्रगट हनुमानजी देवस्थानम्</span>
+                <span class="brand__title">श्री प्रगट हनुमानजी देवस्थानम्</span>
                 <p>धरती फाड़कर प्रकट हुए बाबा बजरंगबली का जाग्रत धाम, सूखी सेवनिया, भोपाल।</p>
                 <div class="footer__social">
                     <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook">📘</a>
@@ -100,35 +107,22 @@
                     <a href="https://www.youtube.com/" target="_blank" rel="noopener" aria-label="YouTube">▶️</a>
                 </div>
             </div>
-            <div class="footer__col">
-                <h4>त्वरित लिंक</h4>
-                <ul>
-                    <li><a href="index.html">होम</a></li>
-                    <li><a href="about.html">मन्दिर इतिहास</a></li>
-                    <li><a href="gallery.html">गैलरी</a></li>
-                    <li><a href="contact.html">संपर्क करें</a></li>
-                </ul>
-            </div>
-            <div class="footer__col">
-                <h4>संपर्क सूत्र</h4>
-                <ul>
-                    <li>📍 सूखी सेवनिया (भोपाल-विदिशा मार्ग), भोपाल, म.प्र.</li>
-                    <li>📞 <a href="tel:+917000194918">+91 70001 94918</a></li>
-                    <li>☎️ <a href="tel:07552590599">0755-2590599</a></li>
-                </ul>
-            </div>
+            <div class="footer__col"><h4>त्वरित लिंक</h4><ul>
+                <li><a href="index.html">होम</a></li><li><a href="about.html">मन्दिर इतिहास</a></li>
+                <li><a href="gallery.html">गैलरी</a></li><li><a href="contact.html">संपर्क करें</a></li>
+            </ul></div>
+            <div class="footer__col"><h4>संपर्क सूत्र</h4><ul>
+                <li>📍 सूखी सेवनिया (भोपाल-विदिशा मार्ग), भोपाल, म.प्र.</li>
+                <li>📞 <a href="tel:+917000194918">+91 70001 94918</a></li>
+                <li>☎️ <a href="tel:07552590599">0755-2590599</a></li>
+            </ul></div>
         </div>
-        <div class="container footer__bottom">
-            <p>© 2026 श्री प्रगट हनुमान जी देवस्थानम् · भोपाल, मध्य प्रदेश</p>
-        </div>
+        <div class="container footer__bottom"><p>© 2026 श्री प्रगट हनुमान जी देवस्थानम् · भोपाल, मध्य प्रदेश</p></div>
     </footer>
 
     <div class="lightbox" id="lightbox"><span class="lightbox__close">×</span><img src="" alt="दर्शन"></div>
 
-    <button class="audio-fab" data-audio-toggle aria-label="हनुमान चालीसा चलाएं">
-        <span data-audio-icon>🎵</span>
-        <span data-audio-text>हनुमान चालीसा</span>
-    </button>
+    <button class="audio-fab" data-audio-toggle aria-label="हनुमान चालीसा चलाएं"><span data-audio-icon>🎵</span><span data-audio-text>हनुमान चालीसा</span></button>
     <a class="whatsapp-fab" href="https://wa.me/917000194918" target="_blank" rel="noopener" aria-label="WhatsApp">
         <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.599 5.393l-.999 3.648 3.9-1.022zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.767.967-.94 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
     </a>

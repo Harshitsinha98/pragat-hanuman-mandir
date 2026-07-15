@@ -4,31 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>श्री प्रगट हनुमान जी देवस्थानम् | सूखी सेवनिया, भोपाल</title>
-    <meta name="description" content="धरती फाड़कर प्रकट हुए श्री प्रगट हनुमान जी का दिव्य देवस्थानम्, सूखी सेवनिया (भोपाल)। मन्नत बाबा का दरबार, नशामुक्ति संकल्प, दर्शन समय एवं ऑनलाइन सेवा/दान।">
-    <meta name="keywords" content="प्रगट हनुमान, हनुमान मंदिर भोपाल, सूखी सेवनिया, मन्नत बाबा, नशामुक्ति, Hanuman Mandir Bhopal">
+    <meta name="description" content="धरती फाड़कर प्रकट हुए श्री प्रगट हनुमान जी का दिव्य देवस्थानम्, सूखी सेवनिया (भोपाल)। मन्नत बाबा का दरबार, नशामुक्ति संकल्प, आरती एवं दर्शन समय, ऑनलाइन सेवा/पूजा बुकिंग एवं दान।">
+    <meta name="keywords" content="प्रगट हनुमान, हनुमान मंदिर भोपाल, सूखी सेवनिया, मन्नत बाबा, नशामुक्ति, आरती समय, Hanuman Mandir Bhopal">
     <meta name="theme-color" content="#7A0016">
 
-    <!-- Open Graph -->
     <meta property="og:title" content="श्री प्रगट हनुमान जी देवस्थानम्">
     <meta property="og:description" content="धरती फाड़कर प्रकट हुए श्री प्रगट हनुमान जी का दिव्य देवस्थानम् — मन्नत बाबा का जाग्रत दरबार।">
     <meta property="og:type" content="website">
     <meta property="og:image" content="images/hanumanjivigrah.jpg">
 
     <link rel="icon" href="images/logo.png" type="image/png">
+    <link rel="apple-touch-icon" href="images/logo.png">
+    <link rel="manifest" href="manifest.json">
 
-    <!-- Fonts: Marcellus (display), Poppins (body), Tiro Devanagari + Mukta (Hindi) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Mukta:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Hidden audio element (Hanuman Chalisa) -->
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div style="text-align:center;">
+            <div class="preloader__om">ॐ</div>
+            <div class="preloader__text">जय श्री हनुमान</div>
+            <div class="preloader__ring"></div>
+        </div>
+    </div>
+
+    <div class="scroll-progress" id="scrollProgress"></div>
+
     <audio id="bgAudio" loop preload="none">
         <source src="images/hanuman-chalisa.mp3" type="audio/mpeg">
     </audio>
+
+    <!-- Announcement marquee -->
+    <div class="announce">
+        <span class="announce__tag">🔔 सूचना</span>
+        <div class="announce__track">
+            <span>🚩 प्रत्येक मंगलवार — मन्नत बाबा का दिव्य दरबार, सुबह 11 से दोपहर 2 बजे तक</span>
+            <span>🪔 प्रतिदिन विशाल भंडारा — सभी श्रद्धालुओं का स्वागत है</span>
+            <span>🕉️ नशामुक्ति संकल्प शिविर — गुरुजी के सानिध्य में</span>
+            <span>📿 ऑनलाइन सुंदरकाण्ड एवं पूजा बुकिंग अब उपलब्ध</span>
+        </div>
+    </div>
 
     <!-- Header -->
     <header class="site-header">
@@ -41,29 +61,35 @@
                 </span>
             </a>
 
-            <button class="nav-toggle" id="navToggle" aria-label="मेन्यू खोलें" aria-controls="primaryNav">
-                <span></span><span></span><span></span>
-            </button>
-
             <nav class="nav" id="primaryNav">
                 <ul class="nav__list">
-                    <li><a class="nav__link active" href="index.html">होम</a></li>
-                    <li><a class="nav__link" href="about.html">मन्दिर इतिहास</a></li>
-                    <li><a class="nav__link" href="gallery.html">गैलरी</a></li>
-                    <li><a class="nav__link" href="contact.html">संपर्क</a></li>
-                    <li><a class="nav__link nav__link--donate" href="#donation">🚩 सेवा / दान</a></li>
+                    <li><a class="nav__link active" href="index.html" data-hi="होम" data-en="Home">होम</a></li>
+                    <li><a class="nav__link" href="about.html" data-hi="मन्दिर इतिहास" data-en="History">मन्दिर इतिहास</a></li>
+                    <li><a class="nav__link" href="#seva" data-hi="सेवाएँ" data-en="Services">सेवाएँ</a></li>
+                    <li><a class="nav__link" href="gallery.html" data-hi="गैलरी" data-en="Gallery">गैलरी</a></li>
+                    <li><a class="nav__link" href="contact.html" data-hi="संपर्क" data-en="Contact">संपर्क</a></li>
+                    <li><a class="nav__link nav__link--donate" href="#donation">🚩 <span data-hi="सेवा / दान" data-en="Donate">सेवा / दान</span></a></li>
                 </ul>
             </nav>
+
+            <div class="header-actions">
+                <button class="icon-btn lang-btn" data-lang-toggle aria-label="भाषा बदलें"><span data-lang-label>ENG</span></button>
+                <button class="icon-btn" data-theme-toggle aria-label="थीम बदलें"><span data-theme-icon>🌙</span></button>
+                <button class="nav-toggle" id="navToggle" aria-label="मेन्यू खोलें" aria-controls="primaryNav">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
         </div>
     </header>
     <div class="nav-backdrop" id="navBackdrop"></div>
 
     <!-- Hero -->
     <section class="hero" id="home">
+        <div class="petals" id="petals"></div>
         <div class="hero__inner">
             <span class="hero__tag">|| जय श्री राम · जय श्री हनुमान ||</span>
             <h1 class="hero__title">धरती फाड़कर प्रकट हुए<br><span class="accent">श्री प्रगट हनुमान जी</span></h1>
-            <p class="hero__text">परम पूजनीय गुरुजी द्वारा स्थापित दिव्य एवं जाग्रत देवस्थानम् में आपका हार्दिक स्वागत है।</p>
+            <p class="hero__text"><span id="heroTyping" data-phrases='["परम पूजनीय गुरुजी द्वारा स्थापित दिव्य धाम","मन्नत बाबा का जाग्रत दरबार","नशामुक्ति एवं मानव कल्याण का केंद्र","श्रद्धा, सेवा और समर्पण का पावन तीर्थ"]'></span><span style="color:var(--saffron)">|</span></p>
             <div class="hero__actions">
                 <a href="gallery.html" class="btn btn--saffron">🛕 मन्दिर दर्शन</a>
                 <a href="#donation" class="btn btn--ghost">ऑनलाइन सहयोग निधि</a>
@@ -72,7 +98,25 @@
         <a href="#roots" class="hero__scroll" aria-label="नीचे स्क्रॉल करें">⌄</a>
     </section>
 
-    <!-- About / Our Roots -->
+    <!-- Aarti / Darshan live widget -->
+    <div class="container aarti-strip">
+        <div class="aarti-card" id="aartiWidget">
+            <div>
+                <span class="status-pill open" data-status><span class="dot"></span> दर्शन खुले हैं</span>
+            </div>
+            <div class="aarti-next">
+                <div class="lbl">अगली आरती</div>
+                <div class="name" data-next-name>—</div>
+            </div>
+            <div class="aarti-countdown">
+                <div class="unit"><div class="num" data-cd-h>00</div><div class="u">घंटे</div></div>
+                <div class="unit"><div class="num" data-cd-m>00</div><div class="u">मिनट</div></div>
+                <div class="unit"><div class="num" data-cd-s>00</div><div class="u">सेकंड</div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About -->
     <section class="section about" id="roots">
         <div class="container about__grid">
             <div class="about__media reveal">
@@ -81,16 +125,12 @@
                     <span class="frame__badge">साक्षात प्राकट्य स्थल</span>
                 </div>
             </div>
-
             <div class="about__body reveal">
-                <span class="eyebrow">Our Roots</span>
-                <h2>पवित्र मन्दिर इतिहास एवं महिमा</h2>
+                <span class="eyebrow" data-hi="Our Roots" data-en="Our Roots">Our Roots</span>
+                <h2 data-hi="पवित्र मन्दिर इतिहास एवं महिमा" data-en="Sacred History & Glory">पवित्र मन्दिर इतिहास एवं महिमा</h2>
                 <div class="divider divider--left"></div>
-
                 <p class="lead">यह वह अलौकिक और जाग्रत स्थान है जहाँ स्वयं श्री हनुमान जी महाराज धरा चीरकर प्रकट हुए हैं।</p>
-
-                <p>परम पूजनीय गुरुजी की अनन्य भक्ति, कठोर साधना और दिव्य संकल्प से इस पावन क्षेत्र को <strong>"श्री प्रगट हनुमानजी देवस्थानम्"</strong> के रूप में स्थापित किया गया। यह भूमि सदियों पुराने ऐतिहासिक वैश्विक रेशम मार्ग (Silk Route) पर स्थित है, जो इसकी प्राचीन दिव्यता को दर्शाता है।</p>
-
+                <p>परम पूजनीय गुरुजी की अनन्य भक्ति, कठोर साधना और दिव्य संकल्प से इस पावन क्षेत्र को <strong>"श्री प्रगट हनुमानजी देवस्थानम्"</strong> के रूप में स्थापित किया गया। यह भूमि सदियों पुराने ऐतिहासिक वैश्विक रेशम मार्ग (Silk Route) पर स्थित है, जो इसकी प्राचीन दिव्यता को दर्शाती है।</p>
                 <ul class="feature-list">
                     <li class="feature">
                         <span class="feature__icon">🔱</span>
@@ -101,7 +141,6 @@
                         <div><strong>व्यसन व नशामुक्ति संकल्प:</strong> गुरुजी के आशीर्वाद से अनेक श्रद्धालु जीवन भर के लिए नशामुक्त होने का अटूट संकल्प लेते हैं।</div>
                     </li>
                 </ul>
-
                 <a href="about.html" class="link-arrow">पूरा इतिहास पढ़ें <span>→</span></a>
             </div>
         </div>
@@ -110,21 +149,44 @@
     <!-- Stats -->
     <section class="stats">
         <div class="container stats__grid">
-            <div class="stat reveal">
-                <div class="stat__num" data-count="10000" data-suffix="+">0</div>
-                <div class="stat__label">श्रद्धालु दर्शनार्थी</div>
-            </div>
-            <div class="stat reveal">
-                <div class="stat__num" data-count="5000" data-suffix="+">0</div>
-                <div class="stat__label">नशामुक्ति संकल्प</div>
-            </div>
-            <div class="stat reveal">
-                <div class="stat__num" data-count="52">0</div>
-                <div class="stat__label">वार्षिक मंगलवार दरबार</div>
-            </div>
-            <div class="stat reveal">
-                <div class="stat__num" data-count="365" data-suffix=" दिन">0</div>
-                <div class="stat__label">निरंतर भंडारा सेवा</div>
+            <div class="stat reveal"><div class="stat__num" data-count="10000" data-suffix="+">0</div><div class="stat__label">श्रद्धालु दर्शनार्थी</div></div>
+            <div class="stat reveal"><div class="stat__num" data-count="5000" data-suffix="+">0</div><div class="stat__label">नशामुक्ति संकल्प</div></div>
+            <div class="stat reveal"><div class="stat__num" data-count="52">0</div><div class="stat__label">वार्षिक मंगलवार दरबार</div></div>
+            <div class="stat reveal"><div class="stat__num" data-count="365" data-suffix=" दिन">0</div><div class="stat__label">निरंतर भंडारा सेवा</div></div>
+        </div>
+    </section>
+
+    <!-- Seva grid -->
+    <section class="section section--alt" id="seva">
+        <div class="section__head reveal">
+            <span class="eyebrow">Our Sacred Services</span>
+            <h2 data-hi="मन्दिर की प्रमुख सेवाएँ" data-en="Our Temple Services">मन्दिर की प्रमुख सेवाएँ</h2>
+            <div class="divider"></div>
+            <p>भक्तों के कल्याण हेतु देवस्थानम् में निरंतर संचालित होने वाली आध्यात्मिक एवं सामाजिक सेवाएँ।</p>
+        </div>
+        <div class="container seva-grid">
+            <div class="seva-card reveal"><div class="seva-card__icon">🔱</div><h3>मन्नत दरबार</h3><p>प्रत्येक मंगलवार बाबा के दरबार में निःशुल्क अर्जी एवं मनोकामना पूर्ति।</p></div>
+            <div class="seva-card reveal"><div class="seva-card__icon">📿</div><h3>सुंदरकाण्ड पाठ</h3><p>सामूहिक सुंदरकाण्ड एवं हनुमान चालीसा पाठ का आयोजन एवं बुकिंग।</p></div>
+            <div class="seva-card reveal"><div class="seva-card__icon">🍲</div><h3>अन्न भंडारा</h3><p>प्रतिदिन विशाल भंडारा — प्रसाद रूपी भोजन सेवा, आप भी सहयोगी बनें।</p></div>
+            <div class="seva-card reveal"><div class="seva-card__icon">🕉️</div><h3>नशामुक्ति संकल्प</h3><p>गुरुजी के सानिध्य में व्यसन त्याग एवं जीवन परिवर्तन का संकल्प।</p></div>
+            <div class="seva-card reveal"><div class="seva-card__icon">🐄</div><h3>गऊ सेवा</h3><p>गौशाला में गौमाता की सेवा एवं चारे हेतु सहयोग की सुविधा।</p></div>
+            <div class="seva-card reveal"><div class="seva-card__icon">🚩</div><h3>ध्वजा एवं श्रृंगार</h3><p>बाबा के श्रृंगार एवं ध्वजा अर्पण की विशेष सेवा बुकिंग।</p></div>
+        </div>
+    </section>
+
+    <!-- Festival countdown -->
+    <section class="section">
+        <div class="container">
+            <div class="festival reveal" id="festivalCountdown">
+                <span class="eyebrow">अगला पावन पर्व</span>
+                <h3 data-fest-name>आगामी पावन पर्व</h3>
+                <div class="date" data-fest-date>—</div>
+                <div class="countdown">
+                    <div class="box"><div class="n" data-fd>00</div><div class="l">दिन</div></div>
+                    <div class="box"><div class="n" data-fh>00</div><div class="l">घंटे</div></div>
+                    <div class="box"><div class="n" data-fm>00</div><div class="l">मिनट</div></div>
+                    <div class="box"><div class="n" data-fs>00</div><div class="l">सेकंड</div></div>
+                </div>
             </div>
         </div>
     </section>
@@ -138,43 +200,110 @@
                     <h2>परम पूजनीय गुरुजी (मन्नत बाबा जी)</h2>
                     <div class="divider divider--left"></div>
                 </div>
-
                 <p class="guru__quote">"हनुमान जी के चरणों में जिसका समर्पण है, उसके जीवन में कभी संकट टिक नहीं सकता।" — मन्नत बाबा जी</p>
-
                 <h3>आध्यात्मिक जीवन और कठोर तपस्या</h3>
                 <p>श्री प्रगट हनुमान जी देवस्थानम् के संस्थापक और मार्गदर्शक परम पूजनीय गुरुजी को श्रद्धालु अगाध श्रद्धा से 'मन्नत बाबा जी' के नाम से पुकारते हैं। उन्होंने बजरंगबली की अत्यंत कठिन और निष्काम साधना की है, जिसके फलस्वरूप आज उनकी वाणी और सानिध्य में भक्तों को साक्षात शांति की अनुभूति होती है।</p>
-
                 <h3>मानवता की सेवा और सामाजिक सुधार</h3>
-                <p>गुरुजी का संकल्प केवल आध्यात्मिक दीक्षा देना नहीं, बल्कि समाज का कल्याण करना है। उनके सानिध्य में यह देवस्थानम् आज मध्य प्रदेश में <strong>नशामुक्ति का सबसे बड़ा केंद्र</strong> बन चुका है। अब तक हज़ारों युवा शराब, गांजा और अन्य व्यसनों को त्याग कर खुशहाल पारिवारिक जीवन जी रहे हैं।</p>
+                <p>गुरुजी का संकल्प केवल आध्यात्मिक दीक्षा देना नहीं, बल्कि समाज का कल्याण करना है। उनके सानिध्य में यह देवस्थानम् आज मध्य प्रदेश में <strong>नशामुक्ति का सबसे बड़ा केंद्र</strong> बन चुका है।</p>
             </div>
-
             <aside class="darbar-card reveal">
                 <div class="darbar-card__inner">
                     <span class="live-pill"><span class="dot"></span> जाग्रत दरबार</span>
                     <h3>भोपाल के मन्नत बाबा का दिव्य दरबार</h3>
                     <p>अपनी अर्जी लगाएं और संकटों से मुक्ति पाएं। गुरुजी के सानिध्य में बाबा का दिव्य दरबार सजता है।</p>
-
                     <div class="timing-box">
                         <h4>दरबार का समय</h4>
                         <div class="day">प्रत्येक मंगलवार व शनिवार</div>
                         <div class="time">दोपहर 11:00 बजे से 2:00 बजे तक</div>
                     </div>
-
                     <p class="darbar-note"><strong>विशेष सूचना:</strong> दरबार में अर्जी लगाने के लिए किसी भी प्रकार का शुल्क या दान नहीं लिया जाता। यह पूर्णतः निःशुल्क एवं श्रद्धा पर आधारित है।</p>
                 </div>
             </aside>
         </div>
     </section>
 
-    <!-- Donation -->
-    <section class="section donate" id="donation">
+    <!-- Hanuman Chalisa reader -->
+    <section class="section chalisa">
+        <div class="section__head reveal">
+            <span class="eyebrow" style="color:var(--gold);">Path & Sadhana</span>
+            <h2 style="color:#fff;">श्री हनुमान चालीसा</h2>
+            <div class="divider"></div>
+            <p style="color:#e6d8d4;">बाबा की स्तुति का पावन पाठ — साथ में चालीसा सुनें एवं मन ही मन जाप करें।</p>
+        </div>
+        <div class="container">
+            <div class="chalisa__panel reveal">
+                <div class="chalisa__scroll">
+                    <p class="doha">श्रीगुरु चरन सरोज रज निज मनु मुकुरु सुधारि।<br>बरनउँ रघुबर बिमल जसु जो दायकु फल चारि॥</p>
+                    <p class="doha">बुद्धिहीन तनु जानिके सुमिरौं पवन-कुमार।<br>बल बुधि बिद्या देहु मोहिं हरहु कलेस बिकार॥</p>
+                    <p>जय हनुमान ज्ञान गुन सागर। जय कपीस तिहुँ लोक उजागर॥</p>
+                    <p>राम दूत अतुलित बल धामा। अंजनि-पुत्र पवनसुत नामा॥</p>
+                    <p>महाबीर बिक्रम बजरंगी। कुमति निवार सुमति के संगी॥</p>
+                    <p>कंचन बरन बिराज सुबेसा। कानन कुंडल कुंचित केसा॥</p>
+                    <p>हाथ बज्र औ ध्वजा बिराजै। काँधे मूँज जनेऊ साजै॥</p>
+                    <p>शंकर सुवन केसरीनंदन। तेज प्रताप महा जग बंदन॥</p>
+                    <p>विद्यावान गुनी अति चातुर। राम काज करिबे को आतुर॥</p>
+                    <p>प्रभु चरित्र सुनिबे को रसिया। राम लखन सीता मन बसिया॥</p>
+                    <p>सूक्ष्म रूप धरि सियहिं दिखावा। बिकट रूप धरि लंक जरावा॥</p>
+                    <p>भीम रूप धरि असुर सँहारे। रामचंद्र के काज सँवारे॥</p>
+                    <p>लाय सजीवन लखन जियाये। श्रीरघुबीर हरषि उर लाये॥</p>
+                    <p>रघुपति कीन्ही बहुत बड़ाई। तुम मम प्रिय भरतहि सम भाई॥</p>
+                    <p>सहस बदन तुम्हरो जस गावैं। अस कहि श्रीपति कंठ लगावैं॥</p>
+                    <p>सनकादिक ब्रह्मादि मुनीसा। नारद सारद सहित अहीसा॥</p>
+                    <p>जम कुबेर दिगपाल जहाँ ते। कबि कोबिद कहि सके कहाँ ते॥</p>
+                    <p>तुम उपकार सुग्रीवहिं कीन्हा। राम मिलाय राज पद दीन्हा॥</p>
+                    <p>तुम्हरो मंत्र बिभीषन माना। लंकेश्वर भए सब जग जाना॥</p>
+                    <p>जुग सहस्र जोजन पर भानू। लील्यो ताहि मधुर फल जानू॥</p>
+                    <p>प्रभु मुद्रिका मेलि मुख माहीं। जलधि लाँघि गये अचरज नाहीं॥</p>
+                    <p>दुर्गम काज जगत के जेते। सुगम अनुग्रह तुम्हरे तेते॥</p>
+                    <p>राम दुआरे तुम रखवारे। होत न आज्ञा बिनु पैसारे॥</p>
+                    <p>सब सुख लहै तुम्हारी सरना। तुम रक्षक काहू को डर ना॥</p>
+                    <p>आपन तेज सम्हारो आपै। तीनों लोक हाँक तें काँपै॥</p>
+                    <p>भूत पिसाच निकट नहिं आवै। महाबीर जब नाम सुनावै॥</p>
+                    <p>नासै रोग हरै सब पीरा। जपत निरंतर हनुमत बीरा॥</p>
+                    <p>संकट तें हनुमान छुड़ावै। मन क्रम बचन ध्यान जो लावै॥</p>
+                    <p>सब पर राम तपस्वी राजा। तिन के काज सकल तुम साजा॥</p>
+                    <p>और मनोरथ जो कोई लावै। सोइ अमित जीवन फल पावै॥</p>
+                    <p>चारों जुग परताप तुम्हारा। है परसिद्ध जगत उजियारा॥</p>
+                    <p>साधु-संत के तुम रखवारे। असुर निकंदन राम दुलारे॥</p>
+                    <p>अष्ट सिद्धि नौ निधि के दाता। अस बर दीन्ह जानकी माता॥</p>
+                    <p>राम रसायन तुम्हरे पासा। सदा रहो रघुपति के दासा॥</p>
+                    <p>तुम्हरे भजन राम को पावै। जनम-जनम के दुख बिसरावै॥</p>
+                    <p>अंत काल रघुबर पुर जाई। जहाँ जन्म हरि-भक्त कहाई॥</p>
+                    <p>और देवता चित्त न धरई। हनुमत सेइ सर्ब सुख करई॥</p>
+                    <p>संकट कटै मिटै सब पीरा। जो सुमिरै हनुमत बलबीरा॥</p>
+                    <p>जय जय जय हनुमान गोसाईं। कृपा करहु गुरुदेव की नाईं॥</p>
+                    <p>जो सत बार पाठ कर कोई। छूटहि बंदि महा सुख होई॥</p>
+                    <p>जो यह पढ़ै हनुमान चालीसा। होय सिद्धि साखी गौरीसा॥</p>
+                    <p>तुलसीदास सदा हरि चेरा। कीजै नाथ हृदय महँ डेरा॥</p>
+                    <p class="doha">पवनतनय संकट हरन मंगल मूरति रूप।<br>राम लखन सीता सहित हृदय बसहु सुर भूप॥</p>
+                </div>
+                <div class="chalisa__bar">
+                    <button class="btn btn--saffron btn--sm" data-audio-toggle><span data-audio-icon>🎵</span> <span data-audio-text>चालीसा सुनें</span></button>
+                    <button class="btn btn--ghost btn--sm" style="border-color:var(--gold);color:var(--gold);" data-share>🔗 साझा करें</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Donation with thermometer -->
+    <section class="section donate section--alt" id="donation">
         <div class="section__head reveal">
             <span class="eyebrow">Contribution</span>
-            <h2>मन्दिर सेवा एवं दान</h2>
+            <h2 data-hi="मन्दिर सेवा एवं दान" data-en="Temple Seva & Donation">मन्दिर सेवा एवं दान</h2>
             <div class="divider"></div>
         </div>
-
         <div class="container">
+            <!-- Construction goal thermometer -->
+            <div class="thermo-wrap reveal">
+                <h3>🛕 भव्य मन्दिर निर्माण निधि</h3>
+                <p class="sub">आपके सहयोग से बाबा का भव्य धाम आकार ले रहा है। इस पुण्य कार्य में सहभागी बनें।</p>
+                <div class="thermo"><div class="thermo__fill" id="thermoFill" data-goal="5100000" data-raised="3245000">0%</div></div>
+                <div class="thermo-meta">
+                    <span>एकत्रित: <strong id="thermoRaised">₹0</strong></span>
+                    <span class="goal" id="thermoGoal">लक्ष्य ₹0</span>
+                </div>
+            </div>
+
             <div class="donate__card reveal">
                 <div class="donate__aside">
                     <h3>भव्य निर्माण एवं भंडारे में सहयोग करें</h3>
@@ -186,24 +315,11 @@
                     </ul>
                     <span class="note">🙏 पावन रसीद आपके ईमेल पर स्वतः भेज दी जाएगी।</span>
                 </div>
-
                 <form class="donate__form" id="donationForm" novalidate>
-                    <div class="field">
-                        <label for="donorName">भक्त का नाम *</label>
-                        <input type="text" id="donorName" placeholder="अपना नाम दर्ज करें" required>
-                    </div>
-                    <div class="field">
-                        <label for="donorEmail">ईमेल आईडी * (रसीद के लिए)</label>
-                        <input type="email" id="donorEmail" placeholder="username@gmail.com" required>
-                    </div>
-                    <div class="field">
-                        <label for="donorPhone">मोबाइल नंबर *</label>
-                        <input type="tel" id="donorPhone" placeholder="10 अंकों का मोबाइल नंबर" pattern="[0-9]{10}" required>
-                    </div>
-                    <div class="field">
-                        <label for="donorGotra">गोत्र (वैकल्पिक)</label>
-                        <input type="text" id="donorGotra" placeholder="अपना गोत्र लिखें">
-                    </div>
+                    <div class="field"><label for="donorName">भक्त का नाम *</label><input type="text" id="donorName" placeholder="अपना नाम दर्ज करें" required></div>
+                    <div class="field"><label for="donorEmail">ईमेल आईडी * (रसीद के लिए)</label><input type="email" id="donorEmail" placeholder="username@gmail.com" required></div>
+                    <div class="field"><label for="donorPhone">मोबाइल नंबर *</label><input type="tel" id="donorPhone" placeholder="10 अंकों का मोबाइल नंबर" pattern="[0-9]{10}" required></div>
+                    <div class="field"><label for="donorGotra">गोत्र (वैकल्पिक)</label><input type="text" id="donorGotra" placeholder="अपना गोत्र लिखें"></div>
                     <div class="field field--amount">
                         <label for="donationAmount">सहयोग राशि (₹) *</label>
                         <div class="amount-chips">
@@ -221,11 +337,119 @@
         </div>
     </section>
 
+    <!-- Puja / Seva Booking -->
+    <section class="section" id="booking">
+        <div class="section__head reveal">
+            <span class="eyebrow">Online Sankalp</span>
+            <h2 data-hi="ऑनलाइन पूजा / सेवा बुकिंग" data-en="Online Puja / Seva Booking">ऑनलाइन पूजा / सेवा बुकिंग</h2>
+            <div class="divider"></div>
+            <p>अपने नाम एवं गोत्र से सुंदरकाण्ड पाठ, भंडारा, श्रृंगार अथवा विशेष पूजा की बुकिंग करें।</p>
+        </div>
+        <div class="container">
+            <div class="booking-card reveal">
+                <div class="booking-card__head">
+                    <h3>📿 सेवा संकल्प फॉर्म</h3>
+                    <p>फॉर्म भरें — मन्दिर परिवार आपसे संपर्क कर विवरण की पुष्टि करेगा।</p>
+                </div>
+                <form class="booking-form" id="bookingForm" novalidate>
+                    <div class="field"><label for="bkName">भक्त का नाम *</label><input type="text" id="bkName" placeholder="पूरा नाम" required></div>
+                    <div class="field"><label for="bkPhone">मोबाइल नंबर *</label><input type="tel" id="bkPhone" placeholder="10 अंकों का नंबर" pattern="[0-9]{10}" required></div>
+                    <div class="field"><label for="bkEmail">ईमेल (वैकल्पिक)</label><input type="email" id="bkEmail" placeholder="username@gmail.com"></div>
+                    <div class="field"><label for="bkGotra">गोत्र (वैकल्पिक)</label><input type="text" id="bkGotra" placeholder="अपना गोत्र"></div>
+                    <div class="field">
+                        <label for="bkSeva">सेवा का प्रकार *</label>
+                        <select id="bkSeva" required>
+                            <option value="">— सेवा चुनें —</option>
+                            <option>सुंदरकाण्ड पाठ</option>
+                            <option>हनुमान चालीसा पाठ</option>
+                            <option>भंडारा सहयोग</option>
+                            <option>बाबा श्रृंगार / ध्वजा</option>
+                            <option>गऊ सेवा</option>
+                            <option>विशेष पूजा / अभिषेक</option>
+                        </select>
+                    </div>
+                    <div class="field"><label for="bkDate">वांछित तिथि *</label><input type="date" id="bkDate" required></div>
+                    <div class="field full"><label for="bkNote">संदेश / विशेष निवेदन (वैकल्पिक)</label><textarea id="bkNote" placeholder="कोई विशेष जानकारी..."></textarea></div>
+                    <div class="full"><button type="submit" class="btn btn--maroon btn--block">सेवा बुक करें 🙏</button></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section section--alt">
+        <div class="section__head reveal">
+            <span class="eyebrow">Blessed Devotees</span>
+            <h2 data-hi="भक्तों के अनुभव" data-en="Devotee Experiences">भक्तों के अनुभव</h2>
+            <div class="divider"></div>
+        </div>
+        <div class="container">
+            <div class="testi-viewport reveal">
+                <div class="testi-track" id="testiTrack">
+                    <div class="testi-slide"><div class="testi-card">
+                        <div class="quote-mark">"</div>
+                        <div class="stars">★★★★★</div>
+                        <p>बरसों से चली आ रही पारिवारिक समस्या मंगलवार दरबार में अर्जी लगाने के कुछ ही समय में सुलझ गई। बाबा का दरबार साक्षात जाग्रत है।</p>
+                        <div class="who">सुरेश शर्मा</div>
+                        <div class="where">भोपाल, म.प्र.</div>
+                    </div></div>
+                    <div class="testi-slide"><div class="testi-card">
+                        <div class="quote-mark">"</div>
+                        <div class="stars">★★★★★</div>
+                        <p>मेरे पति वर्षों से शराब के आदी थे। गुरुजी के आशीर्वाद और नशामुक्ति संकल्प से आज हमारा परिवार फिर से खुशहाल है।</p>
+                        <div class="who">अनीता वर्मा</div>
+                        <div class="where">विदिशा, म.प्र.</div>
+                    </div></div>
+                    <div class="testi-slide"><div class="testi-card">
+                        <div class="quote-mark">"</div>
+                        <div class="stars">★★★★★</div>
+                        <p>यहाँ का भंडारा और वातावरण अद्भुत है। मन को जो शांति यहाँ मिलती है, वह कहीं और अनुभव नहीं की। जय बजरंगबली।</p>
+                        <div class="who">राजेश पटेल</div>
+                        <div class="where">रायसेन, म.प्र.</div>
+                    </div></div>
+                </div>
+                <div class="testi-dots" id="testiDots"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section">
+        <div class="section__head reveal">
+            <span class="eyebrow">Common Questions</span>
+            <h2 data-hi="अक्सर पूछे जाने वाले प्रश्न" data-en="Frequently Asked Questions">अक्सर पूछे जाने वाले प्रश्न</h2>
+            <div class="divider"></div>
+        </div>
+        <div class="container">
+            <div class="faq">
+                <div class="faq-item"><button class="faq-q">दरबार में अर्जी लगाने का समय क्या है? <span class="plus">+</span></button><div class="faq-a"><p>मन्नत बाबा का दरबार प्रत्येक मंगलवार एवं शनिवार, सुबह 11:00 बजे से दोपहर 2:00 बजे तक लगता है। अर्जी लगाना पूर्णतः निःशुल्क है।</p></div></div>
+                <div class="faq-item"><button class="faq-q">क्या दरबार या मन्नत के लिए कोई शुल्क है? <span class="plus">+</span></button><div class="faq-a"><p>नहीं। दरबार में अर्जी लगाने के लिए किसी भी प्रकार का शुल्क नहीं लिया जाता। यह पूर्णतः श्रद्धा पर आधारित है।</p></div></div>
+                <div class="faq-item"><button class="faq-q">ऑनलाइन दान की रसीद कैसे मिलेगी? <span class="plus">+</span></button><div class="faq-a"><p>ऑनलाइन दान करते ही आपके द्वारा दी गई ईमेल आईडी पर पावन रसीद स्वतः भेज दी जाती है। भुगतान पूर्णतः सुरक्षित (Razorpay) है।</p></div></div>
+                <div class="faq-item"><button class="faq-q">नशामुक्ति संकल्प में कैसे जुड़ें? <span class="plus">+</span></button><div class="faq-a"><p>आप मंगलवार दरबार में उपस्थित होकर गुरुजी के सानिध्य में नशामुक्ति संकल्प ले सकते हैं। अधिक जानकारी हेतु मन्दिर कार्यालय से संपर्क करें।</p></div></div>
+                <div class="faq-item"><button class="faq-q">मन्दिर तक कैसे पहुँचें? <span class="plus">+</span></button><div class="faq-a"><p>मन्दिर सूखी सेवनिया (भोपाल-विदिशा मार्ग) पर स्थित है। संपर्क पृष्ठ पर दिए गए मानचित्र से आप आसानी से रास्ता देख सकते हैं।</p></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="section section--alt">
+        <div class="container">
+            <div class="newsletter reveal">
+                <h2>🚩 मन्दिर अपडेट्स से जुड़ें</h2>
+                <p>पर्व, विशेष आयोजन एवं दरबार की सूचनाएँ सबसे पहले पाने हेतु अपना ईमेल जोड़ें।</p>
+                <form id="newsletterForm">
+                    <input type="email" placeholder="अपनी ईमेल आईडी दर्ज करें" required>
+                    <button type="submit" class="btn btn--saffron">सदस्यता लें</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="site-footer">
         <div class="container footer__grid">
             <div class="footer__brand">
-                <span class="brand__title" style="color:#fff;">श्री प्रगट हनुमानजी देवस्थानम्</span>
+                <span class="brand__title">श्री प्रगट हनुमानजी देवस्थानम्</span>
                 <p>धरती फाड़कर प्रकट हुए बाबा बजरंगबली का जाग्रत धाम। मन्नत बाबा के दरबार में हर श्रद्धालु की जायज़ मनोकामना पूर्ण होती है।</p>
                 <div class="footer__social">
                     <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook">📘</a>
@@ -238,8 +462,9 @@
                 <ul>
                     <li><a href="index.html">होम</a></li>
                     <li><a href="about.html">मन्दिर इतिहास</a></li>
+                    <li><a href="#seva">सेवाएँ</a></li>
+                    <li><a href="#booking">पूजा बुकिंग</a></li>
                     <li><a href="gallery.html">गैलरी</a></li>
-                    <li><a href="contact.html">संपर्क करें</a></li>
                     <li><a href="index.html#donation">सेवा / दान</a></li>
                 </ul>
             </div>
@@ -260,8 +485,7 @@
 
     <!-- Floating widgets -->
     <button class="audio-fab" data-audio-toggle aria-label="हनुमान चालीसा चलाएं">
-        <span data-audio-icon>🎵</span>
-        <span data-audio-text>हनुमान चालीसा</span>
+        <span data-audio-icon>🎵</span><span data-audio-text>हनुमान चालीसा</span>
     </button>
     <a class="whatsapp-fab" href="https://wa.me/917000194918" target="_blank" rel="noopener" aria-label="WhatsApp">
         <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.599 5.393l-.999 3.648 3.9-1.022zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.767.967-.94 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
